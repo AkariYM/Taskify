@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "TaskifyA"
 include(":app")
-include(":notas:taskify")
+
