@@ -8,11 +8,20 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskifya.R
 import com.example.taskifya.models.Nota
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NotasAdapter(
-    private val notas: MutableList<Nota>,
+    private val notasCompletas: MutableList<Nota>,
     private val onDeleteClick: (Int) -> Unit
 ) : RecyclerView.Adapter<NotasAdapter.NotaViewHolder>() {
+
+    private var notasFiltradas = mutableListOf<Nota>()
+    private val formatoFecha = SimpleDateFormat("d MMM", Locale("es", "ES"))
+
+    init {
+        notasFiltradas.addAll(notasCompletas)
+    }
 
     class NotaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvCategoria: TextView = view.findViewById(R.id.tvCategoria)
@@ -27,24 +36,58 @@ class NotasAdapter(
     }
 
     override fun onBindViewHolder(holder: NotaViewHolder, position: Int) {
-        val nota = notas[position]
+        val nota = notasFiltradas[position]
         holder.tvCategoria.text = nota.categoria
-        holder.tvFecha.text = nota.fecha
+        holder.tvFecha.text = formatoFecha.format(nota.fecha)
 
         holder.ivEliminar.setOnClickListener {
-            onDeleteClick(position)
+            val indexEnListaCompleta = notasCompletas.indexOf(nota)
+            if (indexEnListaCompleta >= 0) {
+                notasCompletas.removeAt(indexEnListaCompleta)
+                notasFiltradas.removeAt(position)
+                notifyItemRemoved(position)
+                notifyItemRangeChanged(position, notasFiltradas.size)
+            }
         }
     }
 
-    override fun getItemCount(): Int = notas.size
-
-    fun removeItem(position: Int) {
-        notas.removeAt(position)
-        notifyItemRemoved(position)
-    }
+    override fun getItemCount(): Int = notasFiltradas.size
 
     fun addItem(nota: Nota) {
-        notas.add(nota)
-        notifyItemInserted(notas.size - 1)
+        notasCompletas.add(nota)
+        notasFiltradas.add(nota)
+        notifyItemInserted(notasFiltradas.size - 1)
     }
+
+    // Método para filtrar notas por fecha
+    fun filtrarPorFecha(fechaSeleccionada: Date) {
+        val calendar = Calendar.getInstance()
+        calendar.time = fechaSeleccionada
+        val diaSeleccionado = calendar.get(Calendar.DAY_OF_YEAR)
+        val anioSeleccionado = calendar.get(Calendar.YEAR)
+
+        notasFiltradas.clear()
+
+        for (nota in notasCompletas) {
+            calendar.time = nota.fecha
+            val diaNota = calendar.get(Calendar.DAY_OF_YEAR)
+            val anioNota = calendar.get(Calendar.YEAR)
+
+            if (diaNota == diaSeleccionado && anioNota == anioSeleccionado) {
+                notasFiltradas.add(nota)
+            }
+        }
+
+        notifyDataSetChanged()
+    }
+
+    // Método para mostrar todas las notas
+    fun mostrarTodas() {
+        notasFiltradas.clear()
+        notasFiltradas.addAll(notasCompletas)
+        notifyDataSetChanged()
+    }
+
+    // Obtener cantidad total de notas
+    fun getTotalNotas(): Int = notasCompletas.size
 }
