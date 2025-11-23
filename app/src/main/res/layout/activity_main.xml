@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".activities.MainActivity">
+
+    <!-- Título Notas -->
+    <TextView
+        android:id="@+id/tvTituloNotas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notas"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Días de la semana -->
+    <LinearLayout
+        android:id="@+id/layoutDiasSemana"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/tvTituloNotas">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:background="@drawable/circle_background"
+                android:text="4"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mar"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:background="@drawable/circle_background"
+                android:text="5"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mié"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:background="@drawable/circle_background"
+                android:text="6"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jue"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/tvDiaSeleccionado"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:background="@drawable/circle_background_selected"
+                android:text="7"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vie"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:background="@drawable/circle_background"
+                android:text="8"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sáb"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Botones Tareas Pendientes y Notas -->
+    <LinearLayout
+        android:id="@+id/layoutBotones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/layoutDiasSemana">
+
+        <Button
+            android:id="@+id/btnTareasPendientes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tareas Pendientes"
+            android:textColor="@android:color/black"
+            android:background="@drawable/button_background"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/btnNotas"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Notas"
+            android:textColor="@android:color/black"
+            android:background="@drawable/button_background"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <!-- Título Notas -->
+    <TextView
+        android:id="@+id/tvNotasLista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notas"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toBottomOf="@id/layoutBotones"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <!-- RecyclerView para la lista de notas -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewNotas"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintTop_toBottomOf="@id/tvNotasLista"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_nota"/>
+
+    <!-- Botón flotante para agregar nota -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAgregarNota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:src="@android:drawable/ic_input_add"
+        android:contentDescription="Agregar Nota"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:tint="@android:color/white"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
