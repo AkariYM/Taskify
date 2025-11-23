@@ -12,6 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskifyA">
         <activity
+            android:name=".usuario.CambiarPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".usuario.RecuperarPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".usuario.EditarPerfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".usuario.RegistroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".usuario.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
