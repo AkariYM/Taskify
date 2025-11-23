@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">TaskifyA</string>
+    <string name="app_name">Taskify</string>
+    <string-array name="categorias_array">
+        <item>PERSONAL</item>
+        <item>ACADEMICO</item>
+        <item>TRABAJO</item>
+    </string-array>
 </resources>
