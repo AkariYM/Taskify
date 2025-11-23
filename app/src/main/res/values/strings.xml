@@ -5,4 +5,13 @@
         <item>ACADEMICO</item>
         <item>TRABAJO</item>
     </string-array>
+
+    <string name="next">Siguiente</string>
+    <string name="previous">Anterior</string>
+    <string name="lorem_ipsum">Lorem Ipsum</string>
+    <string name="first_fragment_label">Primer Fragmento</string>
+    <string name="second_fragment_label">Segundo Fragmento</string>
+
+
 </resources>
+

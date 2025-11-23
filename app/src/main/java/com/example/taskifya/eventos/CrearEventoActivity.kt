@@ -59,13 +59,19 @@ class CrearEventoActivity : AppCompatActivity() {
                 Toast.makeText(this, "Título obligatorio", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+
+            if (fechaIso.isEmpty()) {
+                Toast.makeText(this, "Selecciona una fecha", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val descripcion = etDescripcion.text.toString().trim().ifEmpty { null }
             val categoria = spinner.selectedItem.toString().uppercase(Locale.getDefault())
 
             val evento = Evento(
                 titulo = titulo,
                 descripcion = descripcion,
-                fechaIso = fechaIso.ifEmpty { "" },
+                fechaIso = fechaIso,
                 hora = horaStr,
                 categoria = categoria,
                 isReminder = 0,

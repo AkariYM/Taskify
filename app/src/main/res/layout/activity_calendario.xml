@@ -11,6 +11,8 @@
         android:text="CALENDARIO"
         android:textStyle="bold"
         android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -26,6 +28,8 @@
     <TextView
         android:id="@+id/tvEventosDia"
         android:text="Eventos del día"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/calendarView"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="8dp"/>

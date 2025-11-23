@@ -7,7 +7,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.taskifya.R
 
-
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -47,7 +46,7 @@ class EventosDbHelper(context: Context) :
         db.execSQL(create)
 
         // seed data
-        fun seed(titulo: String, descripcion: String, fecha:String, hora:String, categoria:String) {
+        fun seed(titulo: String, descripcion: String, fecha: String, hora: String, categoria: String) {
             val cv = ContentValues().apply {
                 put(COL_TITULO, titulo)
                 put(COL_DESCRIPCION, descripcion)
@@ -69,7 +68,6 @@ class EventosDbHelper(context: Context) :
         onCreate(db)
     }
 
-    // synchronous helpers - call from background thread
     fun insertar(e: Evento): Long {
         val db = writableDatabase
         val cv = ContentValues().apply {
@@ -110,7 +108,7 @@ class EventosDbHelper(context: Context) :
         c.use {
             if (it.moveToFirst()) {
                 do {
-                    list.add(cursorToEvento(it.columnIndexOrThrow(COL_ID),
+                    list.add(cursorToEvento(
                         it.getLong(it.getColumnIndexOrThrow(COL_ID)),
                         it.getString(it.getColumnIndexOrThrow(COL_TITULO)),
                         it.getString(it.getColumnIndexOrThrow(COL_DESCRIPCION)),
@@ -126,9 +124,8 @@ class EventosDbHelper(context: Context) :
         return list
     }
 
-    // helper to build Evento (keeps consistent ordering)
     private fun cursorToEvento(
-        _: Int, id: Long, titulo: String, descripcion: String?,
+        id: Long, titulo: String, descripcion: String?,
         fecha: String, hora: String?, categoria: String?, isReminder: Int, repeticion: String?
     ): Evento {
         return Evento(
@@ -150,7 +147,7 @@ class EventosDbHelper(context: Context) :
         c.use {
             if (it.moveToFirst()) {
                 do {
-                    list.add(cursorToEvento(0,
+                    list.add(cursorToEvento(
                         it.getLong(it.getColumnIndexOrThrow(COL_ID)),
                         it.getString(it.getColumnIndexOrThrow(COL_TITULO)),
                         it.getString(it.getColumnIndexOrThrow(COL_DESCRIPCION)),
@@ -173,7 +170,7 @@ class EventosDbHelper(context: Context) :
         c.use {
             if (it.moveToFirst()) {
                 do {
-                    list.add(cursorToEvento(0,
+                    list.add(cursorToEvento(
                         it.getLong(it.getColumnIndexOrThrow(COL_ID)),
                         it.getString(it.getColumnIndexOrThrow(COL_TITULO)),
                         it.getString(it.getColumnIndexOrThrow(COL_DESCRIPCION)),

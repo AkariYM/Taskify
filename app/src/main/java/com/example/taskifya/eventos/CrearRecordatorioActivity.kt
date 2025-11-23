@@ -54,6 +54,12 @@ class CrearRecordatorioActivity : AppCompatActivity() {
                 Toast.makeText(this, "Título requerido", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+
+            if (fechaIso.isEmpty()) {
+                Toast.makeText(this, "Selecciona una fecha", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val descripcion = etDescripcion.text.toString().trim().ifEmpty { null }
             val rep = if (switchRep.isChecked) "SEMANAL" else "NUNCA"
 
