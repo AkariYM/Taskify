@@ -5,16 +5,16 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.taskifya.R
 
-
 class PersonalizacionEditarPerfilActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personalizacion_editar_perfil)
 
-        // Botón guardar
+
+        // Botón que abre Editar Perfil
         findViewById<Button>(R.id.buttonEditarPerfil).setOnClickListener {
-            // Aquí guardas los cambios y cierras la actividad
-            finish()
+            val intent = Intent(this, EditarPerfilActivity::class.java)
+            startActivity(intent)
 
         }
     }

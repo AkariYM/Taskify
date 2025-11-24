@@ -18,10 +18,11 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="?attr/colorOnBackground"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="24dp"
+        tools:ignore="HardcodedText" />
 
     <Button
-        tools:ignore="MissingPrefix"
+        tools:ignore="HardcodedText,MissingPrefix"
         android:id="@+id/buttonEditarPerfil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

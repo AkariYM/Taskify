@@ -1,5 +1,6 @@
 package com.example.taskifya.personalizacion
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Switch
 import androidx.activity.enableEdgeToEdge
@@ -10,6 +11,7 @@ import com.example.taskifya.R
 
 class PersonalizacionNotificacionesActivity : AppCompatActivity() {
 
+    @SuppressLint("UseSwitchCompatOrMaterialCode", "UseKtx")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

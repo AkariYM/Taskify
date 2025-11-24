@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.taskifya" >
+    package="com.example.taskifya">
 
     <application
         android:allowBackup="true"
@@ -9,39 +9,47 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TaskifyA" >
+        android:theme="@style/Theme.TaskifyA">
+
+        <!-- TU ACTIVITY DE EDITAR PERFIL -->
         <activity
-            android:name=".activity_editar_perfil"
-            android:exported="false" />
-        <!-- Actividad de editar perfil -->
+            android:name=".usuario.EditarPerfilActivity"
+            android:exported="false"
+            android:theme="@style/Theme.TaskifyA" />
+
+        <!-- Actividad de Editar Perfil (de personalización) -->
         <activity
             android:name=".personalizacion.PersonalizacionEditarPerfilActivity"
             android:exported="true" />
-        <activity
-            android:name=".personalizacion.PersonalizacionEditarPerfilActivity"
-            android:exported="true"
-            tools:ignore="DuplicateActivity" /> <!-- Actividad principal -->
+
+        <!-- Actividad principal de personalización -->
         <activity
             android:name=".personalizacion.PersonalizacionActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Otras actividades de personalización -->
+        </activity>
+
+        <!-- Otras actividades de personalización -->
         <activity
             android:name=".personalizacion.PersonalizacionTemaActivity"
             android:exported="true" />
+
         <activity
             android:name=".personalizacion.PersonalizacionNotificacionesActivity"
             android:exported="true" />
+
         <activity
             android:name=".personalizacion.PersonalizacionAyudaRapidaActivity"
             android:exported="true" />
+
         <activity
             android:name=".personalizacion.PersonalizacionCopiaDeSeguridadActivity"
-            android:exported="true" /> <!-- MainActivity (Compose) -->
+            android:exported="true" />
+
+        <!-- MainActivity general -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
