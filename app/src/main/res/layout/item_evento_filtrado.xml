@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="12dp"
+    android:gravity="center_vertical"
+    android:background="?attr/selectableItemBackground">
+
+    <!-- Información del evento (fecha, hora, título) -->
+    <TextView
+        android:id="@+id/tvEventoInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="05/11 10:00 - Comprar despensa"
+        android:textSize="14sp"
+        android:textColor="#212121"
+        android:paddingEnd="8dp"/>
+
+    <!-- Botón Editar (ícono de lápiz) -->
+    <ImageButton
+        android:id="@+id/btnEditar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@android:drawable/ic_menu_edit"
+        android:contentDescription="Editar evento"
+        android:tint="#1976D2"
+        android:layout_marginEnd="4dp"/>
+
+    <!-- Botón Eliminar (ícono de basura) -->
+    <ImageButton
+        android:id="@+id/btnEliminar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@android:drawable/ic_menu_delete"
+        android:contentDescription="Eliminar evento"
+        android:tint="#D32F2F"
+        android:layout_marginStart="4dp"/>
+
+</LinearLayout>

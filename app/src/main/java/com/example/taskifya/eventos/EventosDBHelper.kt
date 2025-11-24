@@ -185,4 +185,24 @@ class EventosDbHelper(context: Context) :
         }
         return list
     }
+    fun obtenerPorId(id: Long): Evento? {
+        val db = readableDatabase
+        val c = db.query(TABLE, null, "$COL_ID = ?", arrayOf(id.toString()), null, null, null)
+        return c.use {
+            if (it.moveToFirst()) {
+                cursorToEvento(
+                    it.getLong(it.getColumnIndexOrThrow(COL_ID)),
+                    it.getString(it.getColumnIndexOrThrow(COL_TITULO)),
+                    it.getString(it.getColumnIndexOrThrow(COL_DESCRIPCION)),
+                    it.getString(it.getColumnIndexOrThrow(COL_FECHA)),
+                    it.getString(it.getColumnIndexOrThrow(COL_HORA)),
+                    it.getString(it.getColumnIndexOrThrow(COL_CATEGORIA)),
+                    it.getInt(it.getColumnIndexOrThrow(COL_IS_REMINDER)),
+                    it.getString(it.getColumnIndexOrThrow(COL_REPETICION))
+                )
+            } else {
+                null
+            }
+        }
+    }
 }

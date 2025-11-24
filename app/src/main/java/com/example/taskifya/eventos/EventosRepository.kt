@@ -11,4 +11,5 @@ class EventosRepository(context: Context) {
     fun todos(): List<Evento> = db.obtenerTodos()
     fun porFecha(fecha: String): List<Evento> = db.obtenerPorFecha(fecha)
     fun porCategoria(cat: String): List<Evento> = db.obtenerPorCategoria(cat)
+    fun obtenerPorId(id: Long): Evento? = db.obtenerPorId(id)
 }

@@ -27,6 +27,11 @@
         <activity android:name=".eventos.FiltrarEventosActivity" />
         <activity android:name=".eventos.CalendarioActivity" />
 
+
+
+
+        <activity android:name=".eventos.EditarEventoActivity"/>
+
     </application>
 
 </manifest>
