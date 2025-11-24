@@ -29,6 +29,10 @@ class PersonalizacionCopiaDeSeguridadActivity : AppCompatActivity() {
     private lateinit var backupButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        // ❀ 1. Aplicar Tema Rosa o normal ANTES del setContentView
+        aplicarTema()
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_personalizacion_copia_de_seguridad)
@@ -52,15 +56,27 @@ class PersonalizacionCopiaDeSeguridadActivity : AppCompatActivity() {
         }
     }
 
+
+    // ❀ FUNCIÓN PARA APLICAR EL TEMA ROSA
+    private fun aplicarTema() {
+        val prefs = getSharedPreferences("temas", MODE_PRIVATE)
+        val rosaActivo = prefs.getBoolean("temaRosa", false)
+
+        if (rosaActivo) {
+            setTheme(R.style.Theme_TaskifyA_Rose)
+        } else {
+            setTheme(R.style.Theme_TaskifyA)
+        }
+    }
+
+
     @SuppressLint("SetTextI18n")
     private fun startBackup() {
-        // Mostrar elementos de carga
         progressBar.visibility = View.VISIBLE
         loadingIcon.visibility = View.VISIBLE
         statusText.text = "Iniciando copia..."
         backupButton.isEnabled = false
 
-        // Ejecutar copia en segundo plano
         CoroutineScope(Dispatchers.IO).launch {
             val result = performBackup()
             withContext(Dispatchers.Main) {
@@ -96,7 +112,7 @@ class PersonalizacionCopiaDeSeguridadActivity : AppCompatActivity() {
                     progressBar.progress = progress
                     statusText.text = "Copiando ${file.name} ($progress%)"
                 }
-                delay(200) // Simula tiempo de copia
+                delay(200)
             }
             "Copia de seguridad completada: ${backupDir.absolutePath}"
         } catch (e: Exception) {

@@ -10,36 +10,56 @@ import com.example.taskifya.R
 class PersonalizacionTemaActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        // 1. APLICAR TEMA ROSA O NORMAL ANTES DEL setContentView
+        aplicarTema()
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personalizacion_tema)
 
-        // --- SWITCH DE TEMA ---
+        // --- SWITCH DE MODO OSCURO ---
         val switchTheme = findViewById<SwitchCompat>(R.id.switchTheme)
+        val prefsDark = getSharedPreferences("theme_prefs", MODE_PRIVATE)
 
-        // Obtener valor guardado del modo oscuro
-        val prefs = getSharedPreferences("theme_prefs", MODE_PRIVATE)
-        val isDark = prefs.getBoolean("dark_mode", false)
-
-        // Inicializa el switch según el valor guardado
+        val isDark = prefsDark.getBoolean("dark_mode", false)
         switchTheme.isChecked = isDark
 
-        // Aplica el modo oscuro o claro al iniciar
         AppCompatDelegate.setDefaultNightMode(
             if (isDark) AppCompatDelegate.MODE_NIGHT_YES
             else AppCompatDelegate.MODE_NIGHT_NO
         )
 
-        // Listener para cambiar el tema al alternar el switch
         switchTheme.setOnCheckedChangeListener { _, isChecked ->
-            // Guardar preferencia
-            prefs.edit { putBoolean("dark_mode", isChecked) }
+            prefsDark.edit { putBoolean("dark_mode", isChecked) }
 
-            // Cambiar tema inmediatamente
             AppCompatDelegate.setDefaultNightMode(
                 if (isChecked) AppCompatDelegate.MODE_NIGHT_YES
                 else AppCompatDelegate.MODE_NIGHT_NO
             )
         }
+
+
+        // --- SWITCH DE TEMA ROSA ---
+        val switchTemaRosa = findViewById<SwitchCompat>(R.id.switchTemaRosa)
+        val prefsRosa = getSharedPreferences("temas", MODE_PRIVATE)
+
+        val rosaActivo = prefsRosa.getBoolean("temaRosa", false)
+        switchTemaRosa.isChecked = rosaActivo
+
+        switchTemaRosa.setOnCheckedChangeListener { _, isChecked ->
+            prefsRosa.edit { putBoolean("temaRosa", isChecked) }
+            recreate()  // recargar activity aplicando nuevo tema
+        }
+    }
+
+    private fun aplicarTema() {
+        val prefs = getSharedPreferences("temas", MODE_PRIVATE)
+        val rosaActivo = prefs.getBoolean("temaRosa", false)
+
+        if (rosaActivo) {
+            setTheme(R.style.Theme_TaskifyA_Rose)
+        } else {
+            setTheme(R.style.Theme_TaskifyA)
+        }
     }
 }
-

@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Tema claro del módulo -->
+    <!-- Tema claro normal -->
     <style name="Theme.TaskifyA" parent="Theme.Material3.Light.NoActionBar">
-        <!-- Aquí podrás agregar colores o estilos después -->
         <item name="colorBackground">@color/white</item>
         <item name="colorOnBackground">@color/black</item>
-
     </style>
 
+
+    <!-- Tema Rosa -->
+    <style name="Theme.TaskifyA_Rose" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/rose_pastel</item>
+        <item name="colorSecondary">@color/rose_pastel</item>
+        <item name="colorPrimaryContainer">@color/rose_pastel</item>
+
+        <!-- Fondo rosita claro -->
+        <item name="colorBackground">#FFF1F6</item>
+
+        <!-- Texto oscuro para el fondo claro -->
+        <item name="colorOnBackground">@color/black</item>
+    </style>
 
 </resources>

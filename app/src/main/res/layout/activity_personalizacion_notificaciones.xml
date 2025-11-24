@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:orientation="vertical"
@@ -27,6 +26,7 @@
       android:textColor="?attr/colorOnBackground"
       android:textSize="18sp"
       android:thumbTint="@color/switch_thumb_color"
-      android:trackTint="@color/switch_track_color" />
+      android:trackTint="@color/switch_track_color"
+      tools:ignore="UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck" />
 
 </LinearLayout>

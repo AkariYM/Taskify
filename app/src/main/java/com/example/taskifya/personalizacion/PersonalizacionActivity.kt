@@ -9,55 +9,62 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.taskifya.R
 
+
 class PersonalizacionActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        // Aplicar tema rosa antes del setContentView
+        aplicarTema()
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_personalizacion)
 
-        // Edge-to-edge padding
+        // EDGE TO EDGE
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(
+                systemBars.left,
+                systemBars.top,
+                systemBars.right,
+                systemBars.bottom
+            )
             insets
         }
 
-        // Botón de Temas
+        // BOTONES DE NAVEGACIÓN
         findViewById<Button>(R.id.buttonTemas).setOnClickListener {
             startActivity(Intent(this, PersonalizacionTemaActivity::class.java))
         }
 
-        // Botón de Notificaciones
         findViewById<Button>(R.id.buttonNotificaciones).setOnClickListener {
             startActivity(Intent(this, PersonalizacionNotificacionesActivity::class.java))
         }
 
-        // Botón de Ayuda rápida
         findViewById<Button>(R.id.buttonAyuda).setOnClickListener {
             startActivity(Intent(this, PersonalizacionAyudaRapidaActivity::class.java))
         }
 
-        // Botón de Copia de seguridad
         findViewById<Button>(R.id.buttonBackup).setOnClickListener {
             startActivity(Intent(this, PersonalizacionCopiaDeSeguridadActivity::class.java))
         }
 
-        // Botón de Editar perfil (actividad de David)
-
         findViewById<Button>(R.id.buttonEditarPerfil).setOnClickListener {
-            val intent = Intent(this, PersonalizacionEditarPerfilActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, PersonalizacionEditarPerfilActivity::class.java))
         }
+    }
 
+
+    //  FUNCION PARA APLICAR TEMA ROSA A TODA ESTA PANTALLA
+    private fun aplicarTema() {
+        val prefs = getSharedPreferences("temas", MODE_PRIVATE)
+        val rosaActivo = prefs.getBoolean("temaRosa", false)
+
+        if (rosaActivo) {
+            setTheme(R.style.Theme_TaskifyA_Rose)
+        } else {
+            setTheme(R.style.Theme_TaskifyA)
+        }
     }
 }
-
-
-
-
-
-
-
-
-
-

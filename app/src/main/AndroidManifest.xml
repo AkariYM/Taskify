@@ -10,48 +10,39 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskifyA">
-
+        <activity
+            android:name=".personalizacion.EditarPerfilActivity"
+            android:exported="false" />
         <!-- TU ACTIVITY DE EDITAR PERFIL -->
-
-
         <!-- Actividad de Editar Perfil (de personalización) -->
         <activity
             android:name=".personalizacion.PersonalizacionEditarPerfilActivity"
-            android:exported="true" />
-
-        <!-- Actividad principal de personalización -->
+            android:exported="true" /> <!-- Actividad principal de personalización -->
         <activity
             android:name=".personalizacion.PersonalizacionActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Otras actividades de personalización -->
+        </activity> <!-- Otras actividades de personalización -->
         <activity
             android:name=".personalizacion.PersonalizacionTemaActivity"
             android:exported="true" />
-
         <activity
             android:name=".personalizacion.PersonalizacionNotificacionesActivity"
             android:exported="true" />
-
         <activity
             android:name=".personalizacion.PersonalizacionAyudaRapidaActivity"
             android:exported="true" />
-
         <activity
             android:name=".personalizacion.PersonalizacionCopiaDeSeguridadActivity"
-            android:exported="true" />
-
-        <!-- MainActivity general -->
+            android:exported="true" /> <!-- MainActivity general -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.TaskifyA" />
-
     </application>
 
 </manifest>
