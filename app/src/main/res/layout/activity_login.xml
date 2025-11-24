@@ -86,21 +86,12 @@
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:text="INICIAR"
+        android:backgroundTint="#1976D2"
+        android:textColor="#FFFFFF"
         app:layout_constraintTop_toBottomOf="@+id/etPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="40dp"/>
-
-    <!-- Botón OLVIDÉ MI CONTRASEÑA -->
-    <Button
-        android:id="@+id/btnOlvide"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:text="OLVIDÉ MI CONTRASEÑA"
-        app:layout_constraintTop_toBottomOf="@+id/btnIniciar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
 
     <!-- Enlace Cambiar contraseña -->
     <TextView
@@ -110,7 +101,7 @@
         android:text="Cambiar contraseña"
         android:textSize="14sp"
         android:textColor="#000000"
-        app:layout_constraintTop_toBottomOf="@+id/btnOlvide"
+        app:layout_constraintTop_toBottomOf="@+id/btnIniciar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="24dp"/>

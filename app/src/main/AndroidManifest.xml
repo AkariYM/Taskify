@@ -11,32 +11,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskifyA">
+
         <activity
             android:name=".usuario.CambiarPasswordActivity"
-            android:exported="false" />
-        <activity
-            android:name=".usuario.RecuperarPasswordActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.TaskifyA" />
+
         <activity
             android:name=".usuario.EditarPerfilActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.TaskifyA" />
+
         <activity
             android:name=".usuario.RegistroActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.TaskifyA" />
+
+        <!-- ESTA ES LA PANTALLA INICIAL -->
         <activity
             android:name=".usuario.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.TaskifyA">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- MainActivity ya NO es inicial -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

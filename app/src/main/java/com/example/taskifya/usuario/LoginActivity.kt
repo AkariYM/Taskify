@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.taskifya.MainActivity
 import androidx.appcompat.app.AppCompatActivity
 import com.example.taskifya.R
 
@@ -18,18 +19,12 @@ class LoginActivity : AppCompatActivity() {
         val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val btnIniciar = findViewById<Button>(R.id.btnIniciar)
-        val btnOlvide = findViewById<Button>(R.id.btnOlvide)
         val tvRegistrate = findViewById<TextView>(R.id.tvRegistrate)
         val tvCambiarPass = findViewById<TextView>(R.id.tvCambiarContrasena)
 
         // Navegación: Registro
         tvRegistrate.setOnClickListener {
             startActivity(Intent(this, RegistroActivity::class.java))
-        }
-
-        // Navegación: Recuperar Contraseña
-        btnOlvide.setOnClickListener {
-            startActivity(Intent(this, RecuperarPasswordActivity::class.java))
         }
 
         // Navegación: Cambiar Contraseña
@@ -94,7 +89,8 @@ class LoginActivity : AppCompatActivity() {
                 Toast.LENGTH_LONG
             ).show()
 
-            startActivity(Intent(this, EditarPerfilActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 }
