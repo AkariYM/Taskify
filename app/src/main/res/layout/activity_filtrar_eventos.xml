@@ -1,24 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="24dp"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="top">
 
+    <!-- TÍTULO PRINCIPAL - Centrado horizontalmente -->
     <TextView
-        android:text=" Filtrar eventos"
-        android:textSize="20sp"
+        android:text="Filtrar eventos"
+        android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- SUBTÍTULO: Categorías -->
+    <TextView
+        android:text="Categorías"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#424242"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Filtro Personal - Switch que cambia de gris a azul según estado -->
+    <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingVertical="12dp"
+        android:background="?attr/selectableItemBackground"
+        android:layout_marginBottom="8dp">
         <TextView
             android:text="Personal"
+            android:textSize="16sp"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"/>
@@ -28,12 +49,18 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
+    <!-- Filtro Académico - Switch que cambia de gris a azul según estado -->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingVertical="12dp"
+        android:background="?attr/selectableItemBackground"
+        android:layout_marginBottom="8dp">
         <TextView
             android:text="Académico"
+            android:textSize="16sp"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"/>
@@ -43,12 +70,18 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
+    <!-- Filtro Trabajo - Switch que cambia de gris a azul según estado -->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingVertical="12dp"
+        android:background="?attr/selectableItemBackground"
+        android:layout_marginBottom="16dp">
         <TextView
             android:text="Trabajo"
+            android:textSize="16sp"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"/>
@@ -58,20 +91,35 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
+    <!-- Botón para aplicar los filtros seleccionados -->
     <Button
         android:id="@+id/btnAplicar"
-        android:text="Aplicar filtros"
+        android:text="Aplicar filtro"
         android:backgroundTint="#1976D2"
         android:textColor="#FFFFFF"
-        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:paddingVertical="14dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"/>
 
+    <!-- SUBTÍTULO: Resultados -->
+    <TextView
+        android:text="Eventos filtrados: "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#424242"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Lista de eventos filtrados -->
     <ListView
         android:id="@+id/listFiltrada"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="8dp"/>
+        android:divider="#E0E0E0"
+        android:dividerHeight="1dp"/>
 
 </LinearLayout>
