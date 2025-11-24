@@ -1,51 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:orientation="vertical"
-    android:padding="24dp"
+    android:padding="32dp"
     android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="?attr/colorBackground">
 
-    <!-- Ícono de carga -->
-    <ImageView
-        android:id="@+id/loadingIcon"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:background="@android:color/holo_blue_light"
-        android:importantForAccessibility="no"
-        android:visibility="gone"/>
-
-
-    <!-- Texto de estado -->
+    <!-- Texto centrado y legible -->
     <TextView
         android:id="@+id/statusText"
-        android:text="@string/presiona_el_bot_n_para_iniciar_la_copia"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp"
+        android:text="@string/presiona_el_boton_para_iniciar_la_copia"
+        android:textSize="18sp"
+        android:textColor="?attr/colorOnBackground"
+        android:gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"/>
 
-    <!-- Barra de progreso -->
+    <!-- Barra de progreso horizontal -->
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:max="100"
         android:progress="0"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:indeterminate="false"
+        android:layout_marginBottom="24dp"
+        android:progressTint="?attr/colorPrimary"/>
 
-    <!-- Botón de copia de seguridad -->
+    <!-- Icono de carga elegante -->
+    <ImageView
+        android:id="@+id/loadingIcon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@android:drawable/ic_popup_sync"
+        android:tint="?attr/colorPrimary"
+        android:visibility="gone"
+        android:layout_marginBottom="24dp"
+        tools:ignore="ContentDescription,UseAppTint" />
+
+    <!-- Botón elegante con bordes redondeados -->
     <Button
         android:id="@+id/backupButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hacer copia de seguridad"
-        android:layout_marginTop="24dp"
-        tools:ignore="HardcodedText" />
+        android:text="@string/hacer_copia_de_seguridad"
+        android:textColor="?attr/colorOnPrimary"
+        android:background="@drawable/rounded_button"
+        android:layout_marginTop="24dp" />
+
 
 </LinearLayout>

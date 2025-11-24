@@ -34,7 +34,7 @@ class PersonalizacionTemaActivity : AppCompatActivity() {
             // Guardar preferencia
             prefs.edit { putBoolean("dark_mode", isChecked) }
 
-            // Cambiar tema
+            // Cambiar tema inmediatamente
             AppCompatDelegate.setDefaultNightMode(
                 if (isChecked) AppCompatDelegate.MODE_NIGHT_YES
                 else AppCompatDelegate.MODE_NIGHT_NO
@@ -42,3 +42,4 @@ class PersonalizacionTemaActivity : AppCompatActivity() {
         }
     }
 }
+

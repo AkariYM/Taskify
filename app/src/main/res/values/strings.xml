@@ -1,12 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">TaskifyA</string>
-    <string name="notificaciones_alarmas">Notificaciones/Alarmas</string>
-    <string name="ayuda_r_pida">Ayuda rápida</string>
-    <string name="copia_de_seguridad">Copia de Seguridad</string>
+    <string name="personalizacion_y_configuracion">Personalización y Configuración</string>
     <string name="temas">Temas</string>
-    <string name="personalizacion_y_configuracion">PERSONALIZACIÓN Y CONFIGURACIÓN</string>
+    <string name="notificaciones_alarmas">Notificaciones / Alarmas</string>
+    <string name="ayuda_rapida">Ayuda Rápida</string>
+    <string name="copia_de_seguridad">Copia de Seguridad</string>
     <string name="modo_oscuro">Modo oscuro</string>
     <string name="color_de_tema">COLOR DE TEMA</string>
-    <string name="presiona_el_bot_n_para_iniciar_la_copia">Presiona el botón para iniciar la copia</string>
-    <string name="pantalla_de_notificaciones">Pantalla de Notificaciones</string>
+    <string name="presiona_el_boton_para_iniciar_la_copia">Presiona el botón para iniciar la copia</string>
+    <string name="titulo_ayuda">AYUDA / GUÍA RÁPIDA</string>
+    <string name="contenido_ayuda"><string name="guia_rapida">
+Aquí va el contenido de la guía rápida. Puedes reemplazar este texto con toda la información que necesites mostrar.
+
+Bienvenido a tu app. Aquí encontrarás lo básico para empezar a organizar tus tareas y actividades.
+
+• Usuario:
+  Registra el correo con el que te gustaría tener tus copias de seguridad, así como contraseña y nombre de usuario.
+
+• Perfil:
+  Agrega o edita tu perfil de manera personalizada.
+
+• Recordatorios:
+  Configura, agrega, edita y elimina avisos con hora y notificación, ya sean escolares, de hábitos, etc.
+
+• Notas:
+  Organiza tus ideas a través de estas.
+
+• Calendario:
+  Visualiza tus actividades y eventos de manera organizada.
+</string>
+
+Consulta entregas y eventos por fecha.
+    </string>
+    <string name="hacer_copia_de_seguridad">Hacer copia de seguridad</string>
+    <string name="activar_notificaciones">Activar Notificaciones</string>
+    <!-- Otros strings existentes -->
+
+    <string name="editar_perfil">Editar Perfil</string>
+    <string name="guardar">Guardar</string>
+
+
 </resources>

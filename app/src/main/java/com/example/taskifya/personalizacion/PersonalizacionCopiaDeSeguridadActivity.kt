@@ -33,7 +33,7 @@ class PersonalizacionCopiaDeSeguridadActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_personalizacion_copia_de_seguridad)
 
-        // Mantener tu Edge-to-Edge
+        // Mantener Edge-to-Edge
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
