@@ -7,16 +7,37 @@
     android:gravity="center_vertical"
     android:background="?attr/selectableItemBackground">
 
-    <!-- Información del evento (fecha, hora, título) -->
-    <TextView
-        android:id="@+id/tvEventoInfo"
+    <!-- Contenedor de información del evento (título y descripción) -->
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="05/11 10:00 - Comprar despensa"
-        android:textSize="14sp"
-        android:textColor="#212121"
-        android:paddingEnd="8dp"/>
+        android:orientation="vertical"
+        android:paddingEnd="8dp">
+
+        <!-- Fecha, hora y título -->
+        <TextView
+            android:id="@+id/tvEventoInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="05/11 10:00 - Comprar despensa"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#212121"/>
+
+        <!-- Descripción del evento -->
+        <TextView
+            android:id="@+id/tvDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Leche, pan, huevos"
+            android:textSize="13sp"
+            android:textColor="#757575"
+            android:layout_marginTop="4dp"
+            android:visibility="gone"/>
+        <!-- visibility="gone" hace que se oculte si no hay descripción -->
+
+    </LinearLayout>
 
     <!-- Botón Editar (ícono de lápiz) -->
     <ImageButton

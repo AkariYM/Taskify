@@ -13,6 +13,7 @@ class CalendarioActivity : AppCompatActivity() {
     private lateinit var repo: EventosRepository
     private val executor = Executors.newSingleThreadExecutor()
     private val fmt = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    private lateinit var adapter: EventosCalendarioAdapter  // ← Cambio aquí
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,12 +25,16 @@ class CalendarioActivity : AppCompatActivity() {
         val listView = findViewById<ListView>(R.id.listEventos)
         val btnCrear = findViewById<Button>(R.id.btnCrearEvent)
 
+        // Configurar el adapter personalizado
+        adapter = EventosCalendarioAdapter(this, emptyList())
+        listView.adapter = adapter
+
         fun loadFor(dateIso: String) {
             executor.execute {
                 val items = repo.porFecha(dateIso)
                 runOnUiThread {
-                    listView.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1,
-                        items.map { "${it.hora} - ${it.titulo}" })
+                    // Actualizar el adapter en lugar de crear uno nuevo
+                    adapter.actualizarEventos(items)
                 }
             }
         }
@@ -45,6 +50,18 @@ class CalendarioActivity : AppCompatActivity() {
         btnCrear.setOnClickListener {
             // abrir CrearEventoActivity
             startActivity(android.content.Intent(this, CrearEventoActivity::class.java))
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Recargar eventos cuando volvemos de crear/editar
+        val today = fmt.format(Date())
+        executor.execute {
+            val items = repo.porFecha(today)
+            runOnUiThread {
+                adapter.actualizarEventos(items)
+            }
         }
     }
 

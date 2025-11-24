@@ -5,15 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.ImageButton
 import android.widget.TextView
 import com.example.taskifya.R
 
-class EventosAdapter(
+class EventosCalendarioAdapter(
     private val context: Context,
-    private var eventos: List<Evento>,
-    private val onEditarClick: (Evento) -> Unit,
-    private val onEliminarClick: (Evento) -> Unit
+    private var eventos: List<Evento>
 ) : BaseAdapter() {
 
     override fun getCount(): Int = eventos.size
@@ -27,7 +24,8 @@ class EventosAdapter(
         val holder: ViewHolder
 
         if (convertView == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_evento_filtrado, parent, false)
+            // Inflar el layout personalizado
+            view = LayoutInflater.from(context).inflate(R.layout.item_evento_calendario, parent, false)
             holder = ViewHolder(view)
             view.tag = holder
         } else {
@@ -35,16 +33,11 @@ class EventosAdapter(
             holder = view.tag as ViewHolder
         }
 
+        // Obtener el evento actual
         val evento = eventos[position]
 
-        // Mostrar fecha, hora y título
-        val partesFecha = evento.fechaIso.split("-")
-        val fechaFormateada = if (partesFecha.size == 3) {
-            "${partesFecha[2]}/${partesFecha[1]}"
-        } else {
-            evento.fechaIso
-        }
-        holder.tvEventoInfo.text = "$fechaFormateada ${evento.hora} - ${evento.titulo}"
+        // Mostrar hora y título
+        holder.tvHoraTitulo.text = "${evento.hora} - ${evento.titulo}"
 
         // Mostrar descripción solo si existe y no está vacía
         if (!evento.descripcion.isNullOrBlank()) {
@@ -54,27 +47,18 @@ class EventosAdapter(
             holder.tvDescripcion.visibility = View.GONE
         }
 
-        // Configurar botones
-        holder.btnEditar.setOnClickListener {
-            onEditarClick(evento)
-        }
-
-        holder.btnEliminar.setOnClickListener {
-            onEliminarClick(evento)
-        }
-
         return view
     }
 
+    // Función para actualizar la lista de eventos
     fun actualizarEventos(nuevosEventos: List<Evento>) {
         eventos = nuevosEventos
         notifyDataSetChanged()
     }
 
+    // ViewHolder para optimizar el rendimiento
     private class ViewHolder(view: View) {
-        val tvEventoInfo: TextView = view.findViewById(R.id.tvEventoInfo)
-        val tvDescripcion: TextView = view.findViewById(R.id.tvDescripcion)  // ← Agregado
-        val btnEditar: ImageButton = view.findViewById(R.id.btnEditar)
-        val btnEliminar: ImageButton = view.findViewById(R.id.btnEliminar)
+        val tvHoraTitulo: TextView = view.findViewById(R.id.tvHoraTitulo)
+        val tvDescripcion: TextView = view.findViewById(R.id.tvDescripcion)
     }
 }
