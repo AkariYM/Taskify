@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.TaskifyA" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- Tema claro del módulo -->
+    <style name="Theme.TaskifyA" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Aquí podrás agregar colores o estilos después -->
+        <item name="colorBackground">@color/white</item>
+        <item name="colorOnBackground">@color/black</item>
+
+    </style>
+
+
 </resources>

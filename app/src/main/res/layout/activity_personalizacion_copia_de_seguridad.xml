@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <!-- Ícono de carga -->
+    <ImageView
+        android:id="@+id/loadingIcon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="@android:color/holo_blue_light"
+        android:importantForAccessibility="no"
+        android:visibility="gone"/>
+
+
+    <!-- Texto de estado -->
+    <TextView
+        android:id="@+id/statusText"
+        android:text="@string/presiona_el_bot_n_para_iniciar_la_copia"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- Barra de progreso -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:max="100"
+        android:progress="0"
+        android:visibility="gone" />
+
+    <!-- Botón de copia de seguridad -->
+    <Button
+        android:id="@+id/backupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hacer copia de seguridad"
+        android:layout_marginTop="24dp"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>

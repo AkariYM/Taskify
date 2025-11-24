@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:paddingTop="120dp"
+        android:paddingBottom="32dp">
+
+        <!-- TÍTULO CENTRADO -->
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Personalización y Configuración"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="32dp"
+            tools:ignore="HardcodedText" />
+
+        <!-- BOTONES CENTRADOS Y BAJADOS -->
+        <Button
+            android:id="@+id/buttonTemas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Temas"
+            android:layout_marginBottom="12dp"
+            tools:ignore="HardcodedText,VisualLintButtonSize" />
+
+        <Button
+            android:id="@+id/buttonNotificaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notificaciones / Alarmas"
+            android:layout_marginBottom="12dp"
+            tools:ignore="HardcodedText,VisualLintButtonSize" />
+
+        <Button
+            android:id="@+id/buttonAyuda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ayuda Rápida"
+            android:layout_marginBottom="12dp"
+            tools:ignore="HardcodedText,VisualLintButtonSize" />
+
+        <Button
+            android:id="@+id/buttonBackup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Copia de Seguridad"
+            android:layout_marginBottom="12dp"
+            tools:ignore="HardcodedText,VisualLintButtonSize" />
+
+    </LinearLayout>
+</ScrollView>
