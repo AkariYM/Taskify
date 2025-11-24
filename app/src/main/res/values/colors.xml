@@ -33,12 +33,6 @@
     <color name="cyan_500">#00BCD4</color>
     <color name="cyan_700">#0097A7</color>
 
-    <selector xmlns:android="http://schemas.android.com/apk/res/android">
-        <!-- Encendido -->
-        <item android:color="@color/blue_600" android:state_checked="true" />
-        <!-- Apagado -->
-        <item android:color="@color/gray_400" />
-    </selector>
 
 
 </resources>

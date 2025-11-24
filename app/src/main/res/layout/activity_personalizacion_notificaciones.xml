@@ -26,6 +26,7 @@
       android:text="@string/activar_notificaciones"
       android:textColor="?attr/colorOnBackground"
       android:textSize="18sp"
-      tools:ignore="TouchTargetSizeCheck,UseSwitchCompatOrMaterialXml" />
+      android:thumbTint="@color/switch_thumb_color"
+      android:trackTint="@color/switch_track_color" />
 
 </LinearLayout>

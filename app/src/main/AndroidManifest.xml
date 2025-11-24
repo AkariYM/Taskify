@@ -12,10 +12,7 @@
         android:theme="@style/Theme.TaskifyA">
 
         <!-- TU ACTIVITY DE EDITAR PERFIL -->
-        <activity
-            android:name=".usuario.EditarPerfilActivity"
-            android:exported="false"
-            android:theme="@style/Theme.TaskifyA" />
+
 
         <!-- Actividad de Editar Perfil (de personalización) -->
         <activity
