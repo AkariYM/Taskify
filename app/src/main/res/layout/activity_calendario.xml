@@ -47,6 +47,8 @@
     <Button
         android:id="@+id/btnCrearEvent"
         android:text="Crear evento"
+        android:backgroundTint="#1976D2"
+        android:textColor="#FFFFFF"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -39,7 +39,9 @@
 
     <Button
         android:id="@+id/btnFecha"
-        android:text="MM/DD/AAAA"
+        android:text="Mes/Día/Año"
+        android:backgroundTint="#1976D2"
+        android:textColor="#FFFFFF"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/etDescripcion"
@@ -50,7 +52,9 @@
 
     <Button
         android:id="@+id/btnHora"
-        android:text="HH:MM"
+        android:text="Hora"
+        android:backgroundTint="#1976D2"
+        android:textColor="#FFFFFF"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/etDescripcion"
@@ -71,6 +75,8 @@
     <Button
         android:id="@+id/btnGuardar"
         android:text="Guardar"
+        android:backgroundTint="#1976D2"
+        android:textColor="#FFFFFF"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/spinnerCategoria"
@@ -82,6 +88,8 @@
     <Button
         android:id="@+id/btnCancelar"
         android:text="Cancelar"
+        android:backgroundTint="#1976D2"
+        android:textColor="#FFFFFF"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/spinnerCategoria"

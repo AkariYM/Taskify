@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="Eventos"
+        android:text=" Filtrar eventos"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
@@ -61,6 +61,8 @@
     <Button
         android:id="@+id/btnAplicar"
         android:text="Aplicar filtros"
+        android:backgroundTint="#1976D2"
+        android:textColor="#FFFFFF"
         android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
