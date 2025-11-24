@@ -1,7 +1,11 @@
 package com.example.taskifya.activities
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,10 +26,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var recyclerViewNotas: RecyclerView
     private lateinit var notasAdapter: NotasAdapter
     private lateinit var fabAgregarNota: FloatingActionButton
+    private lateinit var etBuscador: EditText
 
     private val listaDias = mutableListOf<Dia>()
     private val listaNotas = mutableListOf<Nota>()
-    private var fechaSeleccionada: Date = Date()
+    private var fechaSeleccionada: Date? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         recyclerViewDias = findViewById(R.id.recyclerViewDias)
         recyclerViewNotas = findViewById(R.id.recyclerViewNotas)
         fabAgregarNota = findViewById(R.id.fabAgregarNota)
+        etBuscador = findViewById(R.id.etBuscador)
 
         // Agregar notas de ejemplo ANTES de configurar adapters
         agregarNotasEjemplo()
@@ -49,7 +55,7 @@ class MainActivity : AppCompatActivity() {
             // Filtrar notas por el día seleccionado
             notasAdapter.filtrarPorFecha(fechaSeleccionada)
 
-            // Mostrar mensaje (opcional)
+            // Mostrar mensaje
             val formato = SimpleDateFormat("d 'de' MMMM", Locale("es", "ES"))
             Toast.makeText(
                 this,
@@ -69,9 +75,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Configurar RecyclerView de notas
-        notasAdapter = NotasAdapter(listaNotas) { position ->
-            // Ya no se usa este callback porque el delete se maneja dentro del adapter
-        }
+        notasAdapter = NotasAdapter(
+            listaNotas,
+            onDeleteClick = { /* Ya se maneja en el adapter */ },
+            onNotaClick = { nota -> mostrarDetalleNota(nota) }
+        )
 
         recyclerViewNotas.layoutManager = LinearLayoutManager(this)
         recyclerViewNotas.adapter = notasAdapter
@@ -79,13 +87,45 @@ class MainActivity : AppCompatActivity() {
         // Filtrar notas para mostrar solo las del día actual
         notasAdapter.filtrarPorFecha(fechaSeleccionada)
 
+        // Configurar buscador
+        etBuscador.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                val textoBusqueda = s.toString()
+                notasAdapter.filtrarPorTexto(textoBusqueda)
+
+                if (textoBusqueda.isEmpty()) {
+                    // Si borra el texto, volver a filtrar por fecha
+                    notasAdapter.filtrarPorFecha(fechaSeleccionada)
+                }
+            }
+        })
+
         // Click en FAB para agregar nueva nota
         fabAgregarNota.setOnClickListener {
             val intent = Intent(this, NuevaNotaActivity::class.java)
             // Pasar la fecha seleccionada a la siguiente pantalla
-            intent.putExtra("fechaSeleccionada", fechaSeleccionada.time)
+            fechaSeleccionada?.let {
+                intent.putExtra("fechaSeleccionada", it.time)
+            }
             startActivityForResult(intent, REQUEST_CODE_NUEVA_NOTA)
         }
+    }
+
+    private fun mostrarDetalleNota(nota: Nota) {
+        val formato = SimpleDateFormat("d 'de' MMMM 'de' yyyy", Locale("es", "ES"))
+
+        AlertDialog.Builder(this)
+            .setTitle(nota.categoria)
+            .setMessage(
+                "📅 Fecha: ${formato.format(nota.fecha)}\n\n" +
+                        "📝 Título: ${nota.titulo}\n\n" +
+                        "📄 Descripción:\n${nota.descripcion}"
+            )
+            .setPositiveButton("Cerrar") { dialog, _ -> dialog.dismiss() }
+            .show()
     }
 
     private fun generarDias() {
@@ -99,7 +139,9 @@ class MainActivity : AppCompatActivity() {
 
         for (i in 0..30) {
             val numeroDia = calendar.get(Calendar.DAY_OF_MONTH)
-            val nombreDia = formatoDia.format(calendar.time).capitalize()
+            val nombreDia = formatoDia.format(calendar.time).replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+            }
             val esHoy = calendar.get(Calendar.DAY_OF_YEAR) == hoy.get(Calendar.DAY_OF_YEAR) &&
                     calendar.get(Calendar.YEAR) == hoy.get(Calendar.YEAR)
 
@@ -120,20 +162,20 @@ class MainActivity : AppCompatActivity() {
         val calendar = Calendar.getInstance()
 
         // Notas para HOY
-        listaNotas.add(Nota(1, "Reunión de equipo", "Reunión con el equipo de desarrollo", "Trabajo", calendar.time))
-        listaNotas.add(Nota(2, "Compras", "Ir al supermercado", "Personal", calendar.time))
+        listaNotas.add(Nota(1, "Reunión de equipo", "Reunión con el equipo de desarrollo para revisar el sprint", "Trabajo", calendar.time))
+        listaNotas.add(Nota(2, "Compras", "Ir al supermercado y comprar: leche, pan, huevos, frutas", "Personal", calendar.time))
 
         // Nota para AYER
         calendar.add(Calendar.DAY_OF_YEAR, -1)
-        listaNotas.add(Nota(3, "Gimnasio", "Ejercicio de 6-7pm", "Salud", calendar.time))
+        listaNotas.add(Nota(3, "Gimnasio", "Ejercicio de 6-7pm: cardio y pesas", "Salud", calendar.time))
 
         // Nota para MAÑANA
         calendar.add(Calendar.DAY_OF_YEAR, 2)
-        listaNotas.add(Nota(4, "Dentista", "Cita a las 10am", "Salud", calendar.time))
+        listaNotas.add(Nota(4, "Dentista", "Cita a las 10am con el Dr. Pérez", "Salud", calendar.time))
 
         // Nota para PASADO MAÑANA
         calendar.add(Calendar.DAY_OF_YEAR, 1)
-        listaNotas.add(Nota(5, "Presentación", "Presentar proyecto final", "Trabajo", calendar.time))
+        listaNotas.add(Nota(5, "Presentación", "Presentar proyecto final a las 3pm en sala de juntas", "Trabajo", calendar.time))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -144,20 +186,22 @@ class MainActivity : AppCompatActivity() {
                 val titulo = it.getStringExtra("titulo") ?: ""
                 val descripcion = it.getStringExtra("descripcion") ?: ""
                 val categoria = it.getStringExtra("categoria") ?: "Sin categoría"
+                val fechaTimestamp = it.getLongExtra("fecha", System.currentTimeMillis())
+                val fechaNota = Date(fechaTimestamp)
 
                 val nuevaNota = Nota(
                     id = listaNotas.size + 1,
                     titulo = titulo,
                     descripcion = descripcion,
                     categoria = categoria,
-                    fecha = fechaSeleccionada // Usar la fecha actualmente seleccionada
+                    fecha = fechaNota
                 )
 
                 notasAdapter.addItem(nuevaNota)
 
                 Toast.makeText(
                     this,
-                    "Nota agregada a ${SimpleDateFormat("d MMM", Locale("es", "ES")).format(fechaSeleccionada)}",
+                    "Nota agregada a ${SimpleDateFormat("d MMM", Locale("es", "ES")).format(fechaNota)}",
                     Toast.LENGTH_SHORT
                 ).show()
             }
