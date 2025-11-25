@@ -100,7 +100,6 @@ class DatabaseHelper(context: Context) :
     }
 }
 
-// MODELO TEMPORAL
 data class UserModel(
     val id: Int,
     val nombre: String,
