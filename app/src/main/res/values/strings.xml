@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">TaskifyA</string>
     <string name="personalizacion_y_configuracion">Personalización y Configuración</string>
     <string name="temas">Temas</string>
@@ -10,35 +11,34 @@
     <string name="color_de_tema">COLOR DE TEMA</string>
     <string name="presiona_el_boton_para_iniciar_la_copia">Presiona el botón para iniciar la copia</string>
     <string name="titulo_ayuda">AYUDA / GUÍA RÁPIDA</string>
-    <string name="contenido_ayuda"><string name="guia_rapida">
-Aquí va el contenido de la guía rápida. Puedes reemplazar este texto con toda la información que necesites mostrar.
 
-Bienvenido a tu app. Aquí encontrarás lo básico para empezar a organizar tus tareas y actividades.
+    <!-- Contenido largo corregido (NO anidado) -->
+    <string name="contenido_ayuda">
+        Aquí va el contenido de la guía rápida. Puedes reemplazar este texto con toda la información que necesites mostrar.
 
-• Usuario:
-  Registra el correo con el que te gustaría tener tus copias de seguridad, así como contraseña y nombre de usuario.
+        Bienvenido a tu app. Aquí encontrarás lo básico para empezar a organizar tus tareas y actividades.
 
-• Perfil:
-  Agrega o edita tu perfil de manera personalizada.
+        • Usuario:
+          Registra el correo con el que te gustaría tener tus copias de seguridad, así como contraseña y nombre de usuario.
 
-• Recordatorios:
-  Configura, agrega, edita y elimina avisos con hora y notificación, ya sean escolares, de hábitos, etc.
+        • Perfil:
+          Agrega o edita tu perfil de manera personalizada.
 
-• Notas:
-  Organiza tus ideas a través de estas.
+        • Recordatorios:
+          Configura, agrega, edita y elimina avisos con hora y notificación.
 
-• Calendario:
-  Visualiza tus actividades y eventos de manera organizada.
-</string>
+        • Notas:
+          Organiza tus ideas a través de estas.
 
-Consulta entregas y eventos por fecha.
+        • Calendario:
+          Visualiza tus actividades y eventos de manera organizada.
     </string>
+
     <string name="hacer_copia_de_seguridad">Hacer copia de seguridad</string>
     <string name="activar_notificaciones">Activar Notificaciones</string>
-    <!-- Otros strings existentes -->
-
     <string name="editar_perfil">Editar Perfil</string>
     <string name="guardar">Guardar</string>
-
+    <string name="activar_notificaciones2">Activar notificaciones</string>
+    <string name="tema_rosa">Tema Rosa</string>
 
 </resources>

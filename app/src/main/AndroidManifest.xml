@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.taskifya">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,10 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskifyA">
+        <receiver
+            android:name=".personalizacion.RecordatorioReceiver"
+            android:exported="false" />
+
+        <receiver
+            android:name=".personalizacion.RecordatorioReceiver"
+            android:exported="false" />
+
+
         <activity
             android:name=".personalizacion.EditarPerfilActivity"
-            android:exported="false" />
-        <!-- TU ACTIVITY DE EDITAR PERFIL -->
+            android:exported="false" /> <!-- TU ACTIVITY DE EDITAR PERFIL -->
         <!-- Actividad de Editar Perfil (de personalización) -->
         <activity
             android:name=".personalizacion.PersonalizacionEditarPerfilActivity"

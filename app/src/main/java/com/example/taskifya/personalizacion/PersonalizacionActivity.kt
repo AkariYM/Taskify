@@ -14,14 +14,13 @@ class PersonalizacionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        // Aplicar tema rosa antes del setContentView
+        // Aplicar tema rosa
         aplicarTema()
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_personalizacion)
 
-        // EDGE TO EDGE
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(
@@ -56,7 +55,7 @@ class PersonalizacionActivity : AppCompatActivity() {
     }
 
 
-    //  FUNCION PARA APLICAR TEMA ROSA A TODA ESTA PANTALLA
+    //  FUNCIÓN PARA APLICAR TEMA ROSA A TODA ESTA PANTALLA
     private fun aplicarTema() {
         val prefs = getSharedPreferences("temas", MODE_PRIVATE)
         val rosaActivo = prefs.getBoolean("temaRosa", false)

@@ -1,5 +1,8 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.taskifya.personalizacion
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -11,25 +14,40 @@ class PersonalizacionTemaActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        // 1. APLICAR TEMA ROSA O NORMAL ANTES DEL setContentView
-        aplicarTema()
+        aplicarTema() // aplicar tema ANTES del setContentView
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personalizacion_tema)
 
-        // --- SWITCH DE MODO OSCURO ---
-        val switchTheme = findViewById<SwitchCompat>(R.id.switchTheme)
+        val switchDark = findViewById<SwitchCompat>(R.id.switchTheme)
+        val switchRosa = findViewById<SwitchCompat>(R.id.switchTemaRosa)
+
         val prefsDark = getSharedPreferences("theme_prefs", MODE_PRIVATE)
+        val prefsRosa = getSharedPreferences("temas", MODE_PRIVATE)
 
-        val isDark = prefsDark.getBoolean("dark_mode", false)
-        switchTheme.isChecked = isDark
+        val darkActivo = prefsDark.getBoolean("dark_mode", false)
+        val rosaActivo = prefsRosa.getBoolean("temaRosa", false)
 
-        AppCompatDelegate.setDefaultNightMode(
-            if (isDark) AppCompatDelegate.MODE_NIGHT_YES
-            else AppCompatDelegate.MODE_NIGHT_NO
-        )
+        switchDark.isChecked = darkActivo
+        switchRosa.isChecked = rosaActivo
 
-        switchTheme.setOnCheckedChangeListener { _, isChecked ->
+        // ⭐ Si modo oscuro está activo, desactivar rosa
+        if (darkActivo) switchRosa.isChecked = false
+
+        // ⭐ Si rosa está activo, desactivar modo oscuro
+        if (rosaActivo) switchDark.isChecked = false
+
+        // -----------------------
+        // SWITCH: MODO OSCURO
+        // -----------------------
+        switchDark.setOnCheckedChangeListener { _, isChecked ->
+
+            if (isChecked) {
+                // apagar el rosa
+                switchRosa.isChecked = false
+                prefsRosa.edit { putBoolean("temaRosa", false) }
+            }
+
             prefsDark.edit { putBoolean("dark_mode", isChecked) }
 
             AppCompatDelegate.setDefaultNightMode(
@@ -38,28 +56,41 @@ class PersonalizacionTemaActivity : AppCompatActivity() {
             )
         }
 
+        // -----------------------
+        // SWITCH: TEMA ROSA
+        // -----------------------
+        switchRosa.setOnCheckedChangeListener { _, isChecked ->
 
-        // --- SWITCH DE TEMA ROSA ---
-        val switchTemaRosa = findViewById<SwitchCompat>(R.id.switchTemaRosa)
-        val prefsRosa = getSharedPreferences("temas", MODE_PRIVATE)
+            if (isChecked) {
+                // apagar modo oscuro
+                switchDark.isChecked = false
+                prefsDark.edit { putBoolean("dark_mode", false) }
+            }
 
-        val rosaActivo = prefsRosa.getBoolean("temaRosa", false)
-        switchTemaRosa.isChecked = rosaActivo
-
-        switchTemaRosa.setOnCheckedChangeListener { _, isChecked ->
             prefsRosa.edit { putBoolean("temaRosa", isChecked) }
-            recreate()  // recargar activity aplicando nuevo tema
+            reiniciarActividadRapido()
         }
     }
 
     private fun aplicarTema() {
-        val prefs = getSharedPreferences("temas", MODE_PRIVATE)
-        val rosaActivo = prefs.getBoolean("temaRosa", false)
+        val prefsDark = getSharedPreferences("theme_prefs", MODE_PRIVATE)
+        val prefsRosa = getSharedPreferences("temas", MODE_PRIVATE)
 
-        if (rosaActivo) {
-            setTheme(R.style.Theme_TaskifyA_Rose)
-        } else {
-            setTheme(R.style.Theme_TaskifyA)
+        val darkActivo = prefsDark.getBoolean("dark_mode", false)
+        val rosaActivo = prefsRosa.getBoolean("temaRosa", false)
+
+        when {
+            darkActivo -> setTheme(R.style.Theme_TaskifyA) // modo oscuro se activa automáticamente con delegate
+            rosaActivo -> setTheme(R.style.Theme_TaskifyA_Rose)
+            else -> setTheme(R.style.Theme_TaskifyA)
         }
+    }
+
+    @SuppressLint("UnsafeIntentLaunch")
+    private fun reiniciarActividadRapido() {
+        finish()
+        overridePendingTransition(0, 0)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
     }
 }

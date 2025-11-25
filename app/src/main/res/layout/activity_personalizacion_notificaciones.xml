@@ -18,15 +18,14 @@
       android:textColor="?attr/colorOnBackground"
       android:layout_marginBottom="20dp"/>
 
-  <Switch
+  <!--  SWITCH PRINCIPAL  -->
+  <com.google.android.material.materialswitch.MaterialSwitch
       android:id="@+id/switchNotificaciones"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@string/activar_notificaciones"
       android:textColor="?attr/colorOnBackground"
       android:textSize="18sp"
-      android:thumbTint="@color/switch_thumb_color"
-      android:trackTint="@color/switch_track_color"
-      tools:ignore="UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck" />
+      tools:ignore="TouchTargetSizeCheck"/>
 
 </LinearLayout>
