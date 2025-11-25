@@ -14,7 +14,7 @@ class PersonalizacionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        // Aplicar tema rosa
+
         aplicarTema()
 
         super.onCreate(savedInstanceState)
@@ -32,7 +32,6 @@ class PersonalizacionActivity : AppCompatActivity() {
             insets
         }
 
-        // BOTONES DE NAVEGACIÓN
         findViewById<Button>(R.id.buttonTemas).setOnClickListener {
             startActivity(Intent(this, PersonalizacionTemaActivity::class.java))
         }
@@ -55,7 +54,7 @@ class PersonalizacionActivity : AppCompatActivity() {
     }
 
 
-    //  FUNCIÓN PARA APLICAR TEMA ROSA A TODA ESTA PANTALLA
+
     private fun aplicarTema() {
         val prefs = getSharedPreferences("temas", MODE_PRIVATE)
         val rosaActivo = prefs.getBoolean("temaRosa", false)

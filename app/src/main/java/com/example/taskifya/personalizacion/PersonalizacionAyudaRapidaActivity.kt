@@ -8,7 +8,7 @@ class PersonalizacionAyudaRapidaActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        // Aplicar tema rosa o normal antes del layout
+
         aplicarTema()
 
         super.onCreate(savedInstanceState)

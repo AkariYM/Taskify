@@ -23,7 +23,7 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun TaskifyATheme(
-    darkTheme: Boolean = false,   // ✅ Permite cambiar entre modo oscuro o claro
+    darkTheme: Boolean = false,
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {

@@ -30,34 +30,32 @@ class PersonalizacionCopiaDeSeguridadActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        // ❀ 1. Aplicar Tema Rosa o normal ANTES del setContentView
+
         aplicarTema()
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_personalizacion_copia_de_seguridad)
 
-        // Mantener Edge-to-Edge
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // Vincular vistas con layout
         progressBar = findViewById(R.id.progressBar)
         statusText = findViewById(R.id.statusText)
         loadingIcon = findViewById(R.id.loadingIcon)
         backupButton = findViewById(R.id.backupButton)
 
-        // Botón de copia de seguridad
         backupButton.setOnClickListener {
             startBackup()
         }
     }
 
 
-    // ❀ FUNCIÓN PARA APLICAR EL TEMA ROSA
+
     private fun aplicarTema() {
         val prefs = getSharedPreferences("temas", MODE_PRIVATE)
         val rosaActivo = prefs.getBoolean("temaRosa", false)

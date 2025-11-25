@@ -18,7 +18,6 @@
       android:textColor="?attr/colorOnBackground"
       android:layout_marginBottom="20dp"/>
 
-  <!--  SWITCH PRINCIPAL  -->
   <com.google.android.material.materialswitch.MaterialSwitch
       android:id="@+id/switchNotificaciones"
       android:layout_width="wrap_content"

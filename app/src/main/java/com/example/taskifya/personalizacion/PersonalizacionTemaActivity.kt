@@ -14,7 +14,7 @@ class PersonalizacionTemaActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        aplicarTema() // aplicar tema ANTES del setContentView
+        aplicarTema()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personalizacion_tema)
@@ -31,19 +31,16 @@ class PersonalizacionTemaActivity : AppCompatActivity() {
         switchDark.isChecked = darkActivo
         switchRosa.isChecked = rosaActivo
 
-        // ⭐ Si modo oscuro está activo, desactivar rosa
+
         if (darkActivo) switchRosa.isChecked = false
 
-        // ⭐ Si rosa está activo, desactivar modo oscuro
+
         if (rosaActivo) switchDark.isChecked = false
 
-        // -----------------------
-        // SWITCH: MODO OSCURO
-        // -----------------------
         switchDark.setOnCheckedChangeListener { _, isChecked ->
 
             if (isChecked) {
-                // apagar el rosa
+
                 switchRosa.isChecked = false
                 prefsRosa.edit { putBoolean("temaRosa", false) }
             }
@@ -56,13 +53,11 @@ class PersonalizacionTemaActivity : AppCompatActivity() {
             )
         }
 
-        // -----------------------
-        // SWITCH: TEMA ROSA
-        // -----------------------
+
         switchRosa.setOnCheckedChangeListener { _, isChecked ->
 
             if (isChecked) {
-                // apagar modo oscuro
+
                 switchDark.isChecked = false
                 prefsDark.edit { putBoolean("dark_mode", false) }
             }

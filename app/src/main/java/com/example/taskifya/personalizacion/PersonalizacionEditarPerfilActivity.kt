@@ -9,13 +9,13 @@ class PersonalizacionEditarPerfilActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        //  Aplicar tema rosa antes del layout
+
         aplicarTema()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personalizacion_editar_perfil)
 
-        // Recibir correo si en algún momento lo envías
+
 
         val btnEditarPerfil = findViewById<Button>(R.id.buttonEditarPerfil)
 
@@ -27,7 +27,7 @@ class PersonalizacionEditarPerfilActivity : AppCompatActivity() {
         }
     }
 
-    //  FUNCIÓN QUE APLICA EL TEMA ROSA GLOBAL
+
     private fun aplicarTema() {
         val prefs = getSharedPreferences("temas", MODE_PRIVATE)
         val rosaActivo = prefs.getBoolean("temaRosa", false)
