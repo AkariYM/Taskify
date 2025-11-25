@@ -8,8 +8,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.taskifya.R
+import com.example.taskifya.database.DatabaseHelper
 
 class CambiarPasswordActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cambiar_password)
@@ -19,12 +21,37 @@ class CambiarPasswordActivity : AppCompatActivity() {
         val btnGuardar = findViewById<Button>(R.id.btnGuardarPassword)
         val tvVolver = findViewById<TextView>(R.id.tvVolverLoginDesdeCambiar)
 
-        // Regresar al login
+        // ===========================
+        // RECIBIR EL CORREO DEL LOGIN
+        // ===========================
+        val correoActual = intent.getStringExtra("correo")
+
+        if (correoActual == null) {
+            Toast.makeText(this, "Error: No se recibió el correo del usuario.", Toast.LENGTH_LONG).show()
+            finish()
+            return
+        }
+
+        val db = DatabaseHelper(this)
+        val usuario = db.obtenerUsuario(correoActual)
+
+        if (usuario == null) {
+            Toast.makeText(this, "Error: Usuario no encontrado.", Toast.LENGTH_LONG).show()
+            finish()
+            return
+        }
+
+        // ===========================
+        // BOTÓN "VOLVER"
+        // ===========================
         tvVolver.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
 
+        // ===========================
+        // BOTÓN GUARDAR (CAMBIAR PASS)
+        // ===========================
         btnGuardar.setOnClickListener {
 
             val actual = etActual.text.toString().trim()
@@ -45,15 +72,16 @@ class CambiarPasswordActivity : AppCompatActivity() {
             if (actual == nueva) {
                 Toast.makeText(
                     this,
-                    "Tu nueva contraseña debe ser diferente a la actual.",
+                    "La nueva contraseña debe ser distinta a la actual.",
                     Toast.LENGTH_SHORT
                 ).show()
                 return@setOnClickListener
             }
 
-            // Validación: (simulada) contraseña correcta
-            // Cuando tengamos SQLite, aquí se validará
-            if (actual != "123456") {
+            // ===========================
+            // VALIDACIÓN REAL: actual correcta
+            // ===========================
+            if (actual != usuario.password) {
                 Toast.makeText(
                     this,
                     "La contraseña actual no coincide.",
@@ -62,16 +90,28 @@ class CambiarPasswordActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Guardado (simulado)
-            Toast.makeText(
-                this,
-                "Contraseña actualizada correctamente.",
-                Toast.LENGTH_LONG
-            ).show()
+            // ===========================
+            // ACTUALIZAR PASSWORD EN SQLITE
+            // ===========================
+            val ok = db.cambiarPassword(usuario.id, nueva)
 
-            // Regresar al Login
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+            if (ok) {
+                Toast.makeText(
+                    this,
+                    "Contraseña actualizada correctamente.",
+                    Toast.LENGTH_LONG
+                ).show()
+
+                // Redirigir a Login para volver a entrar
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            } else {
+                Toast.makeText(
+                    this,
+                    "Error al actualizar la contraseña.",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
     }
 }
