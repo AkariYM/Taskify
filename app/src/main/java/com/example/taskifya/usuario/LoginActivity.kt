@@ -68,10 +68,7 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // ================================
-            // VALIDACIÓN "REAL" SIMULADA
-            // (Será reemplazada por SQLite)
-            // ================================
+            // validacion local
 
             if (email != "usuario@ejemplo.com" || password != "123456") {
                 Toast.makeText(
