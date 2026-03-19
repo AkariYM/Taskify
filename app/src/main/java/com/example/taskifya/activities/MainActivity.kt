@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        // Click en FAB para agregar nueva nota
+        // Click en FAB (floating action button) para agregar nueva nota
         fabAgregarNota.setOnClickListener {
             val intent = Intent(this, NuevaNotaActivity::class.java)
             // Pasar la fecha seleccionada a la siguiente pantalla
@@ -120,9 +120,9 @@ class MainActivity : AppCompatActivity() {
         AlertDialog.Builder(this)
             .setTitle(nota.categoria)
             .setMessage(
-                "📅 Fecha: ${formato.format(nota.fecha)}\n\n" +
-                        "📝 Título: ${nota.titulo}\n\n" +
-                        "📄 Descripción:\n${nota.descripcion}"
+                " Fecha: ${formato.format(nota.fecha)}\n\n" +
+                        " Título: ${nota.titulo}\n\n" +
+                        " Descripción:\n${nota.descripcion}"
             )
             .setPositiveButton("Cerrar") { dialog, _ -> dialog.dismiss() }
             .show()

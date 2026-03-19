@@ -44,7 +44,7 @@ class NuevaNotaActivity : AppCompatActivity() {
             fechaSeleccionada = Date(fechaRecibida)
         }
 
-        // Configurar RecyclerView de fechas
+        // Configurar RecyclerView (calendario) de fechas
         generarFechas()
         fechasAdapter = FechasAdapter(listaFechas) { position ->
             // Callback cuando se selecciona una fecha
