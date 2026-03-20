@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Tema principal compatible con AppCompat y Material -->
-    <style name="Theme.TaskifyA" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Colores opcionales -->
+    <!-- Tema principal -->
+    <style name="Theme.TaskifyA" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">#6200EE</item>
         <item name="colorPrimaryDark">#3700B3</item>
         <item name="colorAccent">#03DAC5</item>
+        <item name="colorBackground">@color/white</item>
+        <item name="colorOnBackground">@color/black</item>
+    </style>
+
+    <!-- Tema Rosa -->
+    <style name="Theme.TaskifyA_Rose" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/rose_pastel</item>
+        <item name="colorSecondary">@color/rose_pastel</item>
+        <item name="colorPrimaryContainer">@color/rose_pastel</item>
+        <item name="colorBackground">#FFF1F6</item>
+        <item name="colorOnBackground">@color/black</item>
     </style>
 
 </resources>

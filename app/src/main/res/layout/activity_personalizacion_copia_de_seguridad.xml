@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:padding="32dp"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackground">
+
+    <TextView
+        android:id="@+id/statusText"
+        android:text="@string/presiona_el_boton_para_iniciar_la_copia"
+        android:textSize="18sp"
+        android:textColor="?attr/colorOnBackground"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:progress="0"
+        android:visibility="gone"
+        android:indeterminate="false"
+        android:layout_marginBottom="24dp"
+        android:progressTint="?attr/colorPrimary"/>
+
+    <ImageView
+        android:id="@+id/loadingIcon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@android:drawable/ic_popup_sync"
+        android:tint="?attr/colorPrimary"
+        android:visibility="gone"
+        android:layout_marginBottom="24dp"
+        tools:ignore="ContentDescription,UseAppTint" />
+
+    <Button
+        android:id="@+id/backupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hacer_copia_de_seguridad"
+        android:textColor="?attr/colorOnPrimary"
+        android:background="@drawable/rounded_button"
+        android:layout_marginTop="24dp" />
+
+
+</LinearLayout>

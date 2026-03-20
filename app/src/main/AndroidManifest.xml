@@ -1,35 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    package="com.example.taskifya">
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskifyA">
 
+        <!-- Receiver de personalización -->
+        <receiver
+            android:name=".personalizacion.RecordatorioReceiver"
+            android:exported="false" />
+
+        <!-- Activities de Usuario -->
         <activity
             android:name=".usuario.CambiarPasswordActivity"
             android:exported="false"
             android:theme="@style/Theme.TaskifyA" />
-
         <activity
             android:name=".usuario.EditarPerfilActivity"
             android:exported="false"
             android:theme="@style/Theme.TaskifyA" />
-
         <activity
             android:name=".usuario.RegistroActivity"
             android:exported="false"
             android:theme="@style/Theme.TaskifyA" />
-
-        <!-- ESTA ES LA PANTALLA INICIAL -->
         <activity
             android:name=".usuario.LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.TaskifyA" />
+
+        <!-- Activities de Personalización -->
+        <activity
+            android:name=".personalizacion.EditarPerfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".personalizacion.PersonalizacionEditarPerfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".personalizacion.PersonalizacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".personalizacion.PersonalizacionTemaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".personalizacion.PersonalizacionNotificacionesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".personalizacion.PersonalizacionAyudaRapidaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".personalizacion.PersonalizacionCopiaDeSeguridadActivity"
+            android:exported="false" />
+
+        <!-- MainActivity — pantalla de inicio general -->
+        <activity
+            android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.TaskifyA">
             <intent-filter>
@@ -37,11 +68,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- MainActivity ya NO es inicial -->
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
 
     </application>
 
