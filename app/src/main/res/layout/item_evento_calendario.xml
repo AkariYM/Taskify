@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="?attr/selectableItemBackground">
+
+    <!-- Hora y Título del evento -->
+    <TextView
+        android:id="@+id/tvHoraTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="10:00 - Comprar despensa"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#212121"/>
+
+    <!-- Descripción del evento (debajo del título) -->
+    <TextView
+        android:id="@+id/tvDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Leche, pan, huevos"
+        android:textSize="14sp"
+        android:textColor="#757575"
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
+    <!-- visibility="gone" hace que se oculte si no hay descripción -->
+
+</LinearLayout>

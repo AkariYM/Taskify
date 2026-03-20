@@ -58,6 +58,16 @@
             android:name=".personalizacion.PersonalizacionCopiaDeSeguridadActivity"
             android:exported="false" />
 
+        <!-- Activities de Calendario -->
+        <activity
+            android:name=".eventos.CalendarioMenuActivity"
+            android:exported="false" />
+        <activity android:name=".eventos.CrearEventoActivity" />
+        <activity android:name=".eventos.CrearRecordatorioActivity" />
+        <activity android:name=".eventos.FiltrarEventosActivity" />
+        <activity android:name=".eventos.CalendarioActivity" />
+        <activity android:name=".eventos.EditarEventoActivity" />
+
         <!-- MainActivity — pantalla de inicio general -->
         <activity
             android:name=".MainActivity"

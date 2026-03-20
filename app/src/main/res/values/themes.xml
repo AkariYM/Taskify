@@ -19,4 +19,9 @@
         <item name="colorOnBackground">@color/black</item>
     </style>
 
+    <!-- Tema base -->
+    <style name="Base.Theme.TaskifyA" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+    </style>
+
 </resources>

@@ -4,10 +4,17 @@
     <selectionStates>
       <SelectionState runConfigName="Unnamed">
         <option name="selectionMode" value="DROPDOWN" />
+<<<<<<< HEAD
         <DropdownSelection timestamp="2025-11-24T01:16:53.603165700Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\titaf\.android\avd\Small_Phone.avd" />
+=======
+        <DropdownSelection timestamp="2026-02-25T16:16:31.540841300Z">
+          <Target type="DEFAULT_BOOT">
+            <handle>
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\rbkaf\.android\avd\Small_Phone_2.avd" />
+>>>>>>> origin/calendario
             </handle>
           </Target>
         </DropdownSelection>

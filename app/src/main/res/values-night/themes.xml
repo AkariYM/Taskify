@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Tema oscuro principal -->
     <style name="Theme.TaskifyA" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Puedes agregar colores después -->
         <item name="colorBackground">@color/black</item>
         <item name="colorOnBackground">@color/white</item>
+    </style>
 
+    <!-- Tema base oscuro -->
+    <style name="Base.Theme.TaskifyA" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
     </style>
 
 </resources>
