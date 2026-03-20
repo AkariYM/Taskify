@@ -11,26 +11,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskifyA">
 
-        <!-- LAUNCHER -->
+        <!-- MainActivity base sin launcher -->
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
+            android:exported="false" />
 
-        <!-- AQUÍ PEGAS MIS ACTIVITIES DE EVENTOS -->
+        <!-- CalendarioMenuActivity registrada -->
+        <activity
+            android:name=".eventos.CalendarioMenuActivity"
+            android:exported="false" />
+
+        <!-- Activities de eventos -->
         <activity android:name=".eventos.CrearEventoActivity" />
         <activity android:name=".eventos.CrearRecordatorioActivity" />
         <activity android:name=".eventos.FiltrarEventosActivity" />
         <activity android:name=".eventos.CalendarioActivity" />
-
-
-
-
-        <activity android:name=".eventos.EditarEventoActivity"/>
+        <activity android:name=".eventos.EditarEventoActivity" />
 
     </application>
 

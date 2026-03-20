@@ -1,37 +1,47 @@
 package com.example.taskifya
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
-import com.example.taskifya.eventos.CalendarioActivity
-import com.example.taskifya.eventos.CrearEventoActivity
-import com.example.taskifya.eventos.CrearRecordatorioActivity
-import com.example.taskifya.eventos.FiltrarEventosActivity
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.taskifya.ui.theme.TaskifyATheme
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        // Botón para abrir Calendario
-        findViewById<Button>(R.id.btnCalendario).setOnClickListener {
-            startActivity(Intent(this, CalendarioActivity::class.java))
+        enableEdgeToEdge()
+        setContent {
+            TaskifyATheme {
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    Greeting(
+                        name = "Android",
+                        modifier = Modifier.padding(innerPadding)
+                    )
+                }
+            }
         }
+    }
+}
 
-        // Botón para abrir Crear Evento
-        findViewById<Button>(R.id.btnCrearEvento).setOnClickListener {
-            startActivity(Intent(this, CrearEventoActivity::class.java))
-        }
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "Hello $name!",
+        modifier = modifier
+    )
+}
 
-        // Botón para abrir Crear Recordatorio
-        findViewById<Button>(R.id.btnCrearRecordatorio).setOnClickListener {
-            startActivity(Intent(this, CrearRecordatorioActivity::class.java))
-        }
-
-        // Botón para abrir Filtrar Eventos
-        findViewById<Button>(R.id.btnFiltrarEventos).setOnClickListener {
-            startActivity(Intent(this, FiltrarEventosActivity::class.java))
-        }
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    TaskifyATheme {
+        Greeting("Android")
     }
 }
