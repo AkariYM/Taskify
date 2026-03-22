@@ -68,6 +68,14 @@
         <activity android:name=".eventos.CalendarioActivity" />
         <activity android:name=".eventos.EditarEventoActivity" />
 
+        <!-- Activities de Notas -->
+        <activity
+            android:name=".activities.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.NuevaNotaActivity"
+            android:exported="false" />
+
         <!-- MainActivity — pantalla de inicio general -->
         <activity
             android:name=".MainActivity"
