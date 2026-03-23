@@ -42,8 +42,7 @@ class PersonalizacionNotificacionesActivity : BaseActivity() {
         pedirPermisoNotificaciones()
         crearCanalNotificaciones()
 
-        val switchNotificaciones =
-            findViewById<com.google.android.material.materialswitch.MaterialSwitch>(R.id.switchNotificaciones)
+        val switchNotificaciones = findViewById<androidx.appcompat.widget.SwitchCompat>(R.id.switchNotificaciones)
 
         val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
         val estadoGuardado = prefs.getBoolean(KEY_ACTIVADAS, false)
@@ -122,7 +121,7 @@ class PersonalizacionNotificacionesActivity : BaseActivity() {
             .setNegativeButton("Cancelar") { dialog, _ ->
                 dialog.dismiss()
                 cancelarRecordatorios()
-                val switch = findViewById<Switch>(R.id.switchNotificaciones)
+                val switch = findViewById<androidx.appcompat.widget.SwitchCompat>(R.id.switchNotificaciones)
                 switch.isChecked = false
             }
             .show()
