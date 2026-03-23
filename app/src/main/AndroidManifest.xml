@@ -76,6 +76,11 @@
             android:name=".activities.NuevaNotaActivity"
             android:exported="false" />
 
+        <!-- RecursosActivity -->
+        <activity
+            android:name=".RecursosActivity"
+            android:exported="false" />
+
         <!-- MainActivity — pantalla de inicio general -->
         <activity
             android:name=".MainActivity"

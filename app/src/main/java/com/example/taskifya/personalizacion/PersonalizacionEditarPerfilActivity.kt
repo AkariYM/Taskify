@@ -5,12 +5,10 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.taskifya.R
 
-class PersonalizacionEditarPerfilActivity : AppCompatActivity() {
+class PersonalizacionEditarPerfilActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-
-        aplicarTema()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personalizacion_editar_perfil)

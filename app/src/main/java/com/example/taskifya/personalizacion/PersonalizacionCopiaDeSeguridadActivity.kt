@@ -21,7 +21,7 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 
-class PersonalizacionCopiaDeSeguridadActivity : AppCompatActivity() {
+class PersonalizacionCopiaDeSeguridadActivity : BaseActivity() {
 
     private lateinit var progressBar: ProgressBar
     private lateinit var statusText: TextView
@@ -30,8 +30,6 @@ class PersonalizacionCopiaDeSeguridadActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-
-        aplicarTema()
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

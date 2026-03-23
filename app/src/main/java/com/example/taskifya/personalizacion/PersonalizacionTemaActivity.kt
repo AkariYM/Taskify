@@ -10,11 +10,9 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.edit
 import com.example.taskifya.R
 
-class PersonalizacionTemaActivity : AppCompatActivity() {
+class PersonalizacionTemaActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        aplicarTema()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personalizacion_tema)

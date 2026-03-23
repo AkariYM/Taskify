@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="32dp"
+    android:background="@android:color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Taskify"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:textColor="#6200EE"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Qué quieres hacer hoy?"
+        android:textSize="16sp"
+        android:textColor="#666666"
+        android:layout_marginBottom="48dp"/>
+
+    <Button
+        android:id="@+id/btnNotas"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text=" Notas"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnCalendario"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text=" Calendario"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text=" Usuario"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnPersonalizacion"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text=" Personalización"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnRecursos"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text=" Recursos"
+        android:textSize="16sp"/>
+
+</LinearLayout>

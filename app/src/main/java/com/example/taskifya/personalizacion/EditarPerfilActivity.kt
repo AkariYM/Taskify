@@ -4,12 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.taskifya.R
 
-class EditarPerfilActivity : AppCompatActivity() {
+class EditarPerfilActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
-        aplicarTema()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_placeholder) // O el layout real

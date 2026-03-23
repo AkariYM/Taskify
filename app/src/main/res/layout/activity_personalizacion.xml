@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="32dp"
-    android:background="?attr/colorBackground">
+    android:background="@android:color/white">
 
     <LinearLayout
         android:id="@+id/contentLayout"
@@ -28,7 +28,7 @@
             android:textSize="26sp"
             android:textStyle="bold"
             android:gravity="center"
-            android:textColor="?attr/colorOnBackground"
+            android:textColor="@android:color/black"
             android:layout_marginBottom="32dp"/>
 
         <Button
@@ -36,9 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:backgroundTint="?attr/colorPrimary"
             android:text="@string/temas"
-            android:textColor="?attr/colorOnBackground"
             tools:ignore="TextContrastCheck,VisualLintButtonSize" />
 
         <Button
@@ -46,9 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:backgroundTint="?attr/colorPrimary"
             android:text="@string/notificaciones_alarmas"
-            android:textColor="?attr/colorOnBackground"
             tools:ignore="TextContrastCheck,VisualLintButtonSize" />
 
         <Button
@@ -56,9 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:backgroundTint="?attr/colorPrimary"
             android:text="@string/ayuda_rapida"
-            android:textColor="?attr/colorOnBackground"
             tools:ignore="TextContrastCheck,VisualLintButtonSize" />
 
         <Button
@@ -66,9 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:backgroundTint="?attr/colorPrimary"
             android:text="@string/copia_de_seguridad"
-            android:textColor="?attr/colorOnBackground"
             tools:ignore="TextContrastCheck,VisualLintButtonSize" />
 
         <Button
@@ -76,9 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:backgroundTint="?attr/colorPrimary"
             android:text="@string/editar_perfil"
-            android:textColor="?attr/colorOnBackground"
             tools:ignore="TextContrastCheck,VisualLintButtonSize" />
 
     </LinearLayout>

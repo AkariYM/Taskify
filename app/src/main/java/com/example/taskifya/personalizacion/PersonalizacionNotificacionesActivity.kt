@@ -22,7 +22,7 @@ import com.example.taskifya.MainActivity
 import com.example.taskifya.R
 
 
-class PersonalizacionNotificacionesActivity : AppCompatActivity() {
+class PersonalizacionNotificacionesActivity : BaseActivity() {
 
     companion object {
         private const val PREFS_NAME = "prefs_notificaciones"

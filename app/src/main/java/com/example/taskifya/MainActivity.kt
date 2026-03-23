@@ -1,48 +1,44 @@
 package com.example.taskifya
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.taskifya.ui.theme.TaskifyATheme
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import com.example.taskifya.activities.MainActivity as NotasActivity
+import com.example.taskifya.eventos.CalendarioMenuActivity
+import com.example.taskifya.personalizacion.PersonalizacionActivity
+import com.example.taskifya.recursos.HabitScreen
+import com.example.taskifya.recursos.HabitViewModel
+import com.example.taskifya.usuario.LoginActivity
 
-
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?){
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            TaskifyATheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+        setContentView(R.layout.activity_main)
+
+        // Navegar a Notas
+        findViewById<Button>(R.id.btnNotas).setOnClickListener {
+            startActivity(Intent(this, NotasActivity::class.java))
         }
-    }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+        // Navegar a Calendario
+        findViewById<Button>(R.id.btnCalendario).setOnClickListener {
+            startActivity(Intent(this, CalendarioMenuActivity::class.java))
+        }
 
-@Preview(showBackground = true)
-@Composable
-fun GreevingPreview() {
-    TaskifyATheme {
-        Greeting("Android")
+        // Navegar a Usuario
+        findViewById<Button>(R.id.btnUsuario).setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+
+        // Navegar a Personalización
+        findViewById<Button>(R.id.btnPersonalizacion).setOnClickListener {
+            startActivity(Intent(this, PersonalizacionActivity::class.java))
+        }
+
+        // Navegar a Recursos
+        findViewById<Button>(R.id.btnRecursos).setOnClickListener {
+            startActivity(Intent(this, RecursosActivity::class.java))
+        }
     }
 }
