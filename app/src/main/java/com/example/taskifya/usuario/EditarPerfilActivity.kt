@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.InputType
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.taskifya.DashboardActivity
 import com.example.taskifya.R
 import com.example.taskifya.database.DatabaseHelper
 
@@ -24,19 +25,15 @@ class EditarPerfilActivity : AppCompatActivity() {
         val btnGuardar = findViewById<Button>(R.id.btnGuardarCambios)
         val btnCancelar = findViewById<Button>(R.id.btnCancelar)
 
-        // ==========================
-        // RECIBIR CORREO
-        // ==========================
         val correoRecibido = intent.getStringExtra("correo")
+            ?: getSharedPreferences("sesion", MODE_PRIVATE).getString("correo", null)
+
         if (correoRecibido == null) {
             Toast.makeText(this, "Error al recibir datos.", Toast.LENGTH_LONG).show()
             finish()
             return
         }
 
-        // ==========================
-        // OBTENER USUARIO DE SQLITE
-        // ==========================
         val db = DatabaseHelper(this)
         val usuario = db.obtenerUsuario(correoRecibido)
 
@@ -47,15 +44,10 @@ class EditarPerfilActivity : AppCompatActivity() {
         }
 
         usuarioId = usuario.id
-
-        // Mostrar datos reales
         etNombre.setText(usuario.nombre)
         etCorreo.setText(usuario.correo)
         etPassword.setText(usuario.password)
 
-        // ==========================
-        // OJO: Mostrar/Ocultar password
-        // ==========================
         ivToggle.setOnClickListener {
             passwordVisible = !passwordVisible
             etPassword.inputType =
@@ -63,17 +55,12 @@ class EditarPerfilActivity : AppCompatActivity() {
                     InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
                 else
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-
             etPassword.setSelection(etPassword.text.length)
         }
 
         btnCancelar.setOnClickListener { finish() }
 
-        // ==========================
-        // GUARDAR CAMBIOS
-        // ==========================
         btnGuardar.setOnClickListener {
-
             val nuevoNombre = etNombre.text.toString().trim()
             val nuevoCorreo = etCorreo.text.toString().trim()
             val nuevaPass = etPassword.text.toString().trim()
@@ -91,13 +78,17 @@ class EditarPerfilActivity : AppCompatActivity() {
             val ok = db.actualizarUsuario(usuarioId, nuevoNombre, nuevoCorreo, nuevaPass)
 
             if (ok) {
-                Toast.makeText(this, "Datos actualizados. Inicia sesión de nuevo.", Toast.LENGTH_LONG).show()
+                // Actualizar sesión con nuevo correo
+                getSharedPreferences("sesion", MODE_PRIVATE)
+                    .edit().putString("correo", nuevoCorreo).apply()
 
-                // REGRESAR A LOGIN AUTOMÁTICAMENTE
+                Toast.makeText(this, "Datos actualizados correctamente.", Toast.LENGTH_LONG).show()
 
-                val intent = Intent(this, LoginActivity::class.java)
+                // Regresar al Dashboard
+                val intent = Intent(this, DashboardActivity::class.java)
+                intent.putExtra("correo", nuevoCorreo)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
-
                 finish()
             } else {
                 Toast.makeText(this, "Error al actualizar usuario.", Toast.LENGTH_LONG).show()

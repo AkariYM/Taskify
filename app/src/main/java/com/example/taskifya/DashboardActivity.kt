@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import com.example.taskifya.activities.MainActivity as NotasActivity
 import com.example.taskifya.database.DatabaseHelper
 import com.example.taskifya.eventos.CalendarioMenuActivity
@@ -35,6 +36,12 @@ class DashboardActivity : AppCompatActivity() {
 
         cargarNotasRecientes()
         cargarEventosHoy()
+        cargarProximosEventos()
+
+        // Cerrar sesión
+        findViewById<CardView>(R.id.cardCerrarSesion).setOnClickListener {
+            cerrarSesion()
+        }
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNav.selectedItemId = R.id.nav_inicio
@@ -108,7 +115,6 @@ class DashboardActivity : AppCompatActivity() {
                 contenedor.addView(tv)
             }
         }
-        cargarProximosEventos()
     }
 
     private fun cargarProximosEventos() {

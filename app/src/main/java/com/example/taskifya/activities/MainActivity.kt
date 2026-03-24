@@ -36,26 +36,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notas)
 
-        // Inicializar vistas
         recyclerViewDias = findViewById(R.id.recyclerViewDias)
         recyclerViewNotas = findViewById(R.id.recyclerViewNotas)
         fabAgregarNota = findViewById(R.id.fabAgregarNota)
         etBuscador = findViewById(R.id.etBuscador)
 
-        // Agregar notas de ejemplo ANTES de configurar adapters
-        agregarNotasEjemplo()
+        // Cargar notas guardadas
+        cargarNotasGuardadas()
 
-        // Configurar RecyclerView de días
         generarDias()
         diasAdapter = DiasAdapter(listaDias) { position ->
-            // Callback cuando se selecciona un día
             val diaSeleccionado = listaDias[position]
             fechaSeleccionada = diaSeleccionado.fecha
-
-            // Filtrar notas por el día seleccionado
             notasAdapter.filtrarPorFecha(fechaSeleccionada)
-
-            // Mostrar mensaje
             val formato = SimpleDateFormat("d 'de' MMMM", Locale("es", "ES"))
             Toast.makeText(
                 this,
@@ -64,49 +57,40 @@ class MainActivity : AppCompatActivity() {
             ).show()
         }
 
-        recyclerViewDias.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerViewDias.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewDias.adapter = diasAdapter
 
-        // Scroll automático al día actual y obtener fecha seleccionada
         val hoyPosition = listaDias.indexOfFirst { it.isSelected }
         if (hoyPosition >= 0) {
             recyclerViewDias.scrollToPosition(hoyPosition)
             fechaSeleccionada = listaDias[hoyPosition].fecha
         }
 
-        // Configurar RecyclerView de notas
         notasAdapter = NotasAdapter(
             listaNotas,
-            onDeleteClick = { /* Ya se maneja en el adapter */ },
+            onDeleteClick = { guardarNotasEnPrefs() },
             onNotaClick = { nota -> mostrarDetalleNota(nota) }
         )
 
         recyclerViewNotas.layoutManager = LinearLayoutManager(this)
         recyclerViewNotas.adapter = notasAdapter
-
-        // Filtrar notas para mostrar solo las del día actual
         notasAdapter.filtrarPorFecha(fechaSeleccionada)
 
-        // Configurar buscador
         etBuscador.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-
             override fun afterTextChanged(s: Editable?) {
                 val textoBusqueda = s.toString()
                 notasAdapter.filtrarPorTexto(textoBusqueda)
-
                 if (textoBusqueda.isEmpty()) {
-                    // Si borra el texto, volver a filtrar por fecha
                     notasAdapter.filtrarPorFecha(fechaSeleccionada)
                 }
             }
         })
 
-        // Click en FAB (floating action button) para agregar nueva nota
         fabAgregarNota.setOnClickListener {
             val intent = Intent(this, NuevaNotaActivity::class.java)
-            // Pasar la fecha seleccionada a la siguiente pantalla
             fechaSeleccionada?.let {
                 intent.putExtra("fechaSeleccionada", it.time)
             }
@@ -114,15 +98,40 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun cargarNotasGuardadas() {
+        val prefs = getSharedPreferences("notas_prefs", MODE_PRIVATE)
+        val total = prefs.getInt("total_notas", 0)
+        listaNotas.clear()
+        for (i in 0 until total) {
+            val titulo = prefs.getString("nota_titulo_$i", "") ?: ""
+            val descripcion = prefs.getString("nota_descripcion_$i", "") ?: ""
+            val categoria = prefs.getString("nota_categoria_$i", "") ?: ""
+            val fecha = Date(prefs.getLong("nota_fecha_$i", System.currentTimeMillis()))
+            listaNotas.add(Nota(i + 1, titulo, descripcion, categoria, fecha))
+        }
+    }
+
+    private fun guardarNotasEnPrefs() {
+        val prefs = getSharedPreferences("notas_prefs", MODE_PRIVATE)
+        val editor = prefs.edit()
+        editor.putInt("total_notas", listaNotas.size)
+        listaNotas.forEachIndexed { i, nota ->
+            editor.putString("nota_titulo_$i", nota.titulo)
+            editor.putString("nota_descripcion_$i", nota.descripcion)
+            editor.putString("nota_categoria_$i", nota.categoria)
+            editor.putLong("nota_fecha_$i", nota.fecha.time)
+        }
+        editor.apply()
+    }
+
     private fun mostrarDetalleNota(nota: Nota) {
         val formato = SimpleDateFormat("d 'de' MMMM 'de' yyyy", Locale("es", "ES"))
-
         AlertDialog.Builder(this)
             .setTitle(nota.categoria)
             .setMessage(
-                " Fecha: ${formato.format(nota.fecha)}\n\n" +
-                        " Título: ${nota.titulo}\n\n" +
-                        " Descripción:\n${nota.descripcion}"
+                "📅 Fecha: ${formato.format(nota.fecha)}\n\n" +
+                        "📝 Título: ${nota.titulo}\n\n" +
+                        "📄 Descripción:\n${nota.descripcion}"
             )
             .setPositiveButton("Cerrar") { dialog, _ -> dialog.dismiss() }
             .show()
@@ -131,10 +140,7 @@ class MainActivity : AppCompatActivity() {
     private fun generarDias() {
         val calendar = Calendar.getInstance()
         val formatoDia = SimpleDateFormat("EEE", Locale("es", "ES"))
-
-        // Generar 30 días (15 antes y 15 después del día actual)
         calendar.add(Calendar.DAY_OF_YEAR, -15)
-
         val hoy = Calendar.getInstance()
 
         for (i in 0..30) {
@@ -153,29 +159,8 @@ class MainActivity : AppCompatActivity() {
                     isSelected = esHoy
                 )
             )
-
             calendar.add(Calendar.DAY_OF_YEAR, 1)
         }
-    }
-
-    private fun agregarNotasEjemplo() {
-        val calendar = Calendar.getInstance()
-
-        // Notas para HOY
-        listaNotas.add(Nota(1, "Reunión de equipo", "Reunión con el equipo de desarrollo para revisar el sprint", "Trabajo", calendar.time))
-        listaNotas.add(Nota(2, "Compras", "Ir al supermercado y comprar: leche, pan, huevos, frutas", "Personal", calendar.time))
-
-        // Nota para AYER
-        calendar.add(Calendar.DAY_OF_YEAR, -1)
-        listaNotas.add(Nota(3, "Gimnasio", "Ejercicio de 6-7pm: cardio y pesas", "Salud", calendar.time))
-
-        // Nota para MAÑANA
-        calendar.add(Calendar.DAY_OF_YEAR, 2)
-        listaNotas.add(Nota(4, "Dentista", "Cita a las 10am con el Dr. Pérez", "Salud", calendar.time))
-
-        // Nota para PASADO MAÑANA
-        calendar.add(Calendar.DAY_OF_YEAR, 1)
-        listaNotas.add(Nota(5, "Presentación", "Presentar proyecto final a las 3pm en sala de juntas", "Trabajo", calendar.time))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -198,14 +183,20 @@ class MainActivity : AppCompatActivity() {
                 )
 
                 notasAdapter.addItem(nuevaNota)
+                guardarNotasEnPrefs()
 
                 Toast.makeText(
                     this,
-                    "Nota agregada a ${SimpleDateFormat("d MMM", Locale("es", "ES")).format(fechaNota)}",
+                    "Nota guardada ✅",
                     Toast.LENGTH_SHORT
                 ).show()
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        guardarNotasEnPrefs()
     }
 
     companion object {
