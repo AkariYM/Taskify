@@ -19,7 +19,8 @@ class CalendarioActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendario)
 
-        repo = EventosRepository(this)
+        val correo = getSharedPreferences("sesion", MODE_PRIVATE).getString("correo", "default") ?: "default"
+        repo = EventosRepository(this, correo)
 
         val calendarView = findViewById<CalendarView>(R.id.calendarView)
         val listView = findViewById<ListView>(R.id.listEventos)

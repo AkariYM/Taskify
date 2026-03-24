@@ -18,7 +18,8 @@ class CrearEventoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crear_evento)
 
-        repo = EventosRepository(this)
+        val correo = getSharedPreferences("sesion", MODE_PRIVATE).getString("correo", "default") ?: "default"
+        repo = EventosRepository(this, correo)
 
         val etTitulo = findViewById<EditText>(R.id.etTitulo)
         val etDescripcion = findViewById<EditText>(R.id.etDescripcion)

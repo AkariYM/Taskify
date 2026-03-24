@@ -63,7 +63,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="🎨  Temas"
+                    android:text="Temas"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textColor="#333333"/>
@@ -96,7 +96,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="🔔  Notificaciones"
+                    android:text="Notificaciones"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textColor="#333333"/>
@@ -129,7 +129,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="❓  Ayuda Rápida"
+                    android:text="Ayuda Rápida"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textColor="#333333"/>
@@ -162,7 +162,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="💾  Copia de Seguridad"
+                    android:text="Copia de Seguridad"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textColor="#333333"/>
@@ -195,7 +195,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="👤  Editar Perfil"
+                    android:text="Editar Perfil"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textColor="#333333"/>

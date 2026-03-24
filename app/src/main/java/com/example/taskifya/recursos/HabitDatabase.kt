@@ -6,12 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [
-        Habit::class,
-        HabitRecord::class,
-        Link::class,
-        Reminder::class
-    ],
+    entities = [Habit::class, HabitRecord::class, Link::class, Reminder::class],
     version = 1,
     exportSchema = false
 )
@@ -23,20 +18,19 @@ abstract class HabitDatabase : RoomDatabase() {
     abstract fun reminderDao(): ReminderDao
 
     companion object {
-        @Volatile
-        private var INSTANCE: HabitDatabase? = null
+        private val instances = mutableMapOf<String, HabitDatabase>()
 
-        fun getDatabase(context: Context): HabitDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
+        fun getDatabase(context: Context, correoUsuario: String = "default"): HabitDatabase {
+            val key = correoUsuario.replace("@", "_").replace(".", "_")
+            return instances[key] ?: synchronized(this) {
+                instances[key] ?: Room.databaseBuilder(
                     context.applicationContext,
                     HabitDatabase::class.java,
-                    "habit_database"
+                    "habit_database_$key"
                 )
-                    .fallbackToDestructiveMigration() // Solo para desarrollo
+                    .fallbackToDestructiveMigration()
                     .build()
-                INSTANCE = instance
-                instance
+                    .also { instances[key] = it }
             }
         }
     }

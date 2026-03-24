@@ -2,8 +2,8 @@ package com.example.taskifya.eventos
 
 import android.content.Context
 
-class EventosRepository(context: Context) {
-    private val db = EventosDbHelper(context.applicationContext)
+class EventosRepository(context: Context, correoUsuario: String = "default") {
+    private val db = EventosDbHelper(context.applicationContext, correoUsuario)
 
     fun insertar(e: Evento): Long = db.insertar(e)
     fun actualizar(e: Evento): Int = db.actualizar(e)

@@ -147,7 +147,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="📋 Eventos filtrados"
+            android:text="Eventos filtrados"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#3700B3"

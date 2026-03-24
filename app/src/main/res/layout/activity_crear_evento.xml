@@ -105,7 +105,7 @@
                             android:layout_width="0dp"
                             android:layout_height="52dp"
                             android:layout_weight="1"
-                            android:text="📅 Fecha"
+                            android:text="Fecha"
                             android:textColor="#FFFFFF"
                             android:backgroundTint="#6200EE"
                             android:layout_marginEnd="8dp"/>
@@ -115,7 +115,7 @@
                             android:layout_width="0dp"
                             android:layout_height="52dp"
                             android:layout_weight="1"
-                            android:text="🕐 Hora"
+                            android:text="Hora"
                             android:textColor="#FFFFFF"
                             android:backgroundTint="#6200EE"/>
 

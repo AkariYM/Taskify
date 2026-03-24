@@ -145,7 +145,7 @@ fun HabitScreen(viewModel: HabitViewModel) {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = "📋 Mis Tareas",
+                                text = "Mis Tareas",
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Color(0xFF3700B3)

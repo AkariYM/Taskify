@@ -22,7 +22,8 @@ class FiltrarEventosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filtrar_eventos)
 
-        repo = EventosRepository(this)
+        val correo = getSharedPreferences("sesion", MODE_PRIVATE).getString("correo", "default") ?: "default"
+        repo = EventosRepository(this, correo)
 
         swPersonal = findViewById(R.id.switchPersonal)
         swAcademico = findViewById(R.id.switchAcademico)

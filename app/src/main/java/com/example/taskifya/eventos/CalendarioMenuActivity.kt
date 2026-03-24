@@ -5,10 +5,6 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.taskifya.R
-import com.example.taskifya.eventos.CalendarioActivity
-import com.example.taskifya.eventos.CrearEventoActivity
-import com.example.taskifya.eventos.CrearRecordatorioActivity
-import com.example.taskifya.eventos.FiltrarEventosActivity
 
 class CalendarioMenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,4 +24,7 @@ class CalendarioMenuActivity : AppCompatActivity() {
             startActivity(Intent(this, FiltrarEventosActivity::class.java))
         }
     }
+
+    private fun getCorreo(): String =
+        getSharedPreferences("sesion", MODE_PRIVATE).getString("correo", "default") ?: "default"
 }

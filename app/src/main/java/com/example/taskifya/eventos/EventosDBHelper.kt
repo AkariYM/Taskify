@@ -1,24 +1,15 @@
 package com.example.taskifya.eventos
 
-import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.taskifya.R
-
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class EventosDbHelper(context: Context) :
-    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+class EventosDbHelper(context: Context, correoUsuario: String = "default") :
+    SQLiteOpenHelper(context, "eventos_${correoUsuario.replace("@","_").replace(".","_")}.db", null, DATABASE_VERSION) {
 
     companion object {
-        const val DATABASE_NAME = "eventos.db"
         const val DATABASE_VERSION = 1
-
         const val TABLE = "eventos"
         const val COL_ID = "id"
         const val COL_TITULO = "titulo"
@@ -44,23 +35,6 @@ class EventosDbHelper(context: Context) :
             );
         """.trimIndent()
         db.execSQL(create)
-
-        // seed data
-        fun seed(titulo: String, descripcion: String, fecha: String, hora: String, categoria: String) {
-            val cv = ContentValues().apply {
-                put(COL_TITULO, titulo)
-                put(COL_DESCRIPCION, descripcion)
-                put(COL_FECHA, fecha)
-                put(COL_HORA, hora)
-                put(COL_CATEGORIA, categoria)
-                put(COL_IS_REMINDER, 0)
-                put(COL_REPETICION, "NUNCA")
-            }
-            db.insert(TABLE, null, cv)
-        }
-        seed("Comprar despensa", "Leche, pan, huevos", "2025-11-05", "10:00", "PERSONAL")
-        seed("Examen Parcial", "Capítulo 3", "2025-11-10", "08:30", "ACADEMICO")
-        seed("Pagar agua", "", "2025-11-12", "12:00", "PERSONAL")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -107,57 +81,19 @@ class EventosDbHelper(context: Context) :
         val c = db.query(TABLE, null, null, null, null, null, "$COL_FECHA, $COL_HORA")
         c.use {
             if (it.moveToFirst()) {
-                do {
-                    list.add(cursorToEvento(
-                        it.getLong(it.getColumnIndexOrThrow(COL_ID)),
-                        it.getString(it.getColumnIndexOrThrow(COL_TITULO)),
-                        it.getString(it.getColumnIndexOrThrow(COL_DESCRIPCION)),
-                        it.getString(it.getColumnIndexOrThrow(COL_FECHA)),
-                        it.getString(it.getColumnIndexOrThrow(COL_HORA)),
-                        it.getString(it.getColumnIndexOrThrow(COL_CATEGORIA)),
-                        it.getInt(it.getColumnIndexOrThrow(COL_IS_REMINDER)),
-                        it.getString(it.getColumnIndexOrThrow(COL_REPETICION))
-                    ))
-                } while (it.moveToNext())
+                do { list.add(cursorToEvento(it)) } while (it.moveToNext())
             }
         }
         return list
     }
 
-    private fun cursorToEvento(
-        id: Long, titulo: String, descripcion: String?,
-        fecha: String, hora: String?, categoria: String?, isReminder: Int, repeticion: String?
-    ): Evento {
-        return Evento(
-            id = id,
-            titulo = titulo,
-            descripcion = descripcion,
-            fechaIso = fecha,
-            hora = hora ?: "",
-            categoria = categoria ?: "PERSONAL",
-            isReminder = isReminder,
-            repeticion = repeticion
-        )
-    }
-
     fun obtenerPorFecha(fechaIso: String): List<Evento> {
         val db = readableDatabase
         val list = mutableListOf<Evento>()
-        val c = db.query(TABLE, null, "$COL_FECHA = ?", arrayOf(fechaIso), null, null, "$COL_HORA")
+        val c = db.query(TABLE, null, "$COL_FECHA = ?", arrayOf(fechaIso), null, null, COL_HORA)
         c.use {
             if (it.moveToFirst()) {
-                do {
-                    list.add(cursorToEvento(
-                        it.getLong(it.getColumnIndexOrThrow(COL_ID)),
-                        it.getString(it.getColumnIndexOrThrow(COL_TITULO)),
-                        it.getString(it.getColumnIndexOrThrow(COL_DESCRIPCION)),
-                        it.getString(it.getColumnIndexOrThrow(COL_FECHA)),
-                        it.getString(it.getColumnIndexOrThrow(COL_HORA)),
-                        it.getString(it.getColumnIndexOrThrow(COL_CATEGORIA)),
-                        it.getInt(it.getColumnIndexOrThrow(COL_IS_REMINDER)),
-                        it.getString(it.getColumnIndexOrThrow(COL_REPETICION))
-                    ))
-                } while (it.moveToNext())
+                do { list.add(cursorToEvento(it)) } while (it.moveToNext())
             }
         }
         return list
@@ -169,40 +105,30 @@ class EventosDbHelper(context: Context) :
         val c = db.query(TABLE, null, "$COL_CATEGORIA = ?", arrayOf(cat), null, null, "$COL_FECHA, $COL_HORA")
         c.use {
             if (it.moveToFirst()) {
-                do {
-                    list.add(cursorToEvento(
-                        it.getLong(it.getColumnIndexOrThrow(COL_ID)),
-                        it.getString(it.getColumnIndexOrThrow(COL_TITULO)),
-                        it.getString(it.getColumnIndexOrThrow(COL_DESCRIPCION)),
-                        it.getString(it.getColumnIndexOrThrow(COL_FECHA)),
-                        it.getString(it.getColumnIndexOrThrow(COL_HORA)),
-                        it.getString(it.getColumnIndexOrThrow(COL_CATEGORIA)),
-                        it.getInt(it.getColumnIndexOrThrow(COL_IS_REMINDER)),
-                        it.getString(it.getColumnIndexOrThrow(COL_REPETICION))
-                    ))
-                } while (it.moveToNext())
+                do { list.add(cursorToEvento(it)) } while (it.moveToNext())
             }
         }
         return list
     }
+
     fun obtenerPorId(id: Long): Evento? {
         val db = readableDatabase
         val c = db.query(TABLE, null, "$COL_ID = ?", arrayOf(id.toString()), null, null, null)
         return c.use {
-            if (it.moveToFirst()) {
-                cursorToEvento(
-                    it.getLong(it.getColumnIndexOrThrow(COL_ID)),
-                    it.getString(it.getColumnIndexOrThrow(COL_TITULO)),
-                    it.getString(it.getColumnIndexOrThrow(COL_DESCRIPCION)),
-                    it.getString(it.getColumnIndexOrThrow(COL_FECHA)),
-                    it.getString(it.getColumnIndexOrThrow(COL_HORA)),
-                    it.getString(it.getColumnIndexOrThrow(COL_CATEGORIA)),
-                    it.getInt(it.getColumnIndexOrThrow(COL_IS_REMINDER)),
-                    it.getString(it.getColumnIndexOrThrow(COL_REPETICION))
-                )
-            } else {
-                null
-            }
+            if (it.moveToFirst()) cursorToEvento(it) else null
         }
+    }
+
+    private fun cursorToEvento(c: android.database.Cursor): Evento {
+        return Evento(
+            id = c.getLong(c.getColumnIndexOrThrow(COL_ID)),
+            titulo = c.getString(c.getColumnIndexOrThrow(COL_TITULO)),
+            descripcion = c.getString(c.getColumnIndexOrThrow(COL_DESCRIPCION)),
+            fechaIso = c.getString(c.getColumnIndexOrThrow(COL_FECHA)),
+            hora = c.getString(c.getColumnIndexOrThrow(COL_HORA)) ?: "",
+            categoria = c.getString(c.getColumnIndexOrThrow(COL_CATEGORIA)) ?: "PERSONAL",
+            isReminder = c.getInt(c.getColumnIndexOrThrow(COL_IS_REMINDER)),
+            repeticion = c.getString(c.getColumnIndexOrThrow(COL_REPETICION))
+        )
     }
 }
