@@ -81,9 +81,9 @@
             android:name=".RecursosActivity"
             android:exported="false" />
 
-        <!-- MainActivity — pantalla de inicio general -->
+        <!-- SplashActivity — nueva pantalla de inicio -->
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.TaskifyA">
             <intent-filter>
@@ -91,6 +91,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- MainActivity — ya no es launcher -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.TaskifyA" />
 
     </application>
 

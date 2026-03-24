@@ -1,109 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:background="#FFFFFF">
 
-    <!-- Enlace REGÍSTRATE -->
-    <TextView
-        android:id="@+id/tvRegistrate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="REGÍSTRATE"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:textColor="#000000"
+    <!-- Encabezado morado/azul -->
+    <View
+        android:id="@+id/viewHeader"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/splash_background"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="8dp"/>
+        app:layout_constraintHeight_percent="0.28"/>
 
-    <!-- Título Bienvenido -->
-    <TextView
-        android:id="@+id/tvBienvenido"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bienvenido"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/tvRegistrate"
+    <!-- Logo en el encabezado -->
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/logo_taskify"
+        android:contentDescription="Logo"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toTopOf="@id/viewHeader"
+        app:layout_constraintBottom_toBottomOf="@id/viewHeader"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Texto Email -->
-    <TextView
-        android:id="@+id/tvEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@+id/tvBienvenido"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="40dp"/>
-
-    <!-- EditText Email -->
-    <EditText
-        android:id="@+id/etEmail"
+    <!-- Card con el formulario -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardLogin"
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:hint="Correo electrónico"
-        android:background="@android:drawable/edit_text"
-        android:padding="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/tvEmail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
-
-    <!-- Texto Contraseña -->
-    <TextView
-        android:id="@+id/tvPassword"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contraseña"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="-32dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/viewHeader"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="24dp"/>
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <!-- EditText Contraseña -->
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        android:background="@android:drawable/edit_text"
-        android:padding="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/tvPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
 
-    <!-- Botón INICIAR -->
-    <Button
-        android:id="@+id/btnIniciar"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:text="INICIAR"
-        android:backgroundTint="#1976D2"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Iniciar Sesión"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#3700B3"
+                android:gravity="center"
+                android:layout_marginBottom="24dp"/>
 
-    <!-- Enlace Cambiar contraseña -->
-    <TextView
-        android:id="@+id/tvCambiarContrasena"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cambiar contraseña"
-        android:textSize="14sp"
-        android:textColor="#000000"
-        app:layout_constraintTop_toBottomOf="@+id/btnIniciar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Correo electrónico"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_marginBottom="6dp"/>
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:hint="ejemplo@correo.com"
+                android:inputType="textEmailAddress"
+                android:padding="12dp"
+                android:background="@drawable/edittext_background"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contraseña"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_marginBottom="6dp"/>
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:hint="Tu contraseña"
+                android:inputType="textPassword"
+                android:padding="12dp"
+                android:background="@drawable/edittext_background"
+                android:layout_marginBottom="24dp"/>
+
+            <Button
+                android:id="@+id/btnIniciar"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:text="Iniciar Sesión"
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#6200EE"
+                android:layout_marginBottom="16dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¿No tienes cuenta? "
+                    android:textSize="14sp"
+                    android:textColor="#666666"/>
+
+                <TextView
+                    android:id="@+id/tvRegistrate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Regístrate"
+                    android:textSize="14sp"
+                    android:textColor="#6200EE"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvCambiarContrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Olvidaste tu contraseña?"
+                android:textSize="14sp"
+                android:textColor="#6200EE"
+                android:gravity="center"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
