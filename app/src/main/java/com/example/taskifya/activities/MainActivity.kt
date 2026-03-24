@@ -99,7 +99,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun cargarNotasGuardadas() {
-        val prefs = getSharedPreferences("notas_prefs", MODE_PRIVATE)
+        val correo = getSharedPreferences("sesion", MODE_PRIVATE)
+            .getString("correo", "default") ?: "default"
+        val prefs = getSharedPreferences("notas_${correo}", MODE_PRIVATE)
         val total = prefs.getInt("total_notas", 0)
         listaNotas.clear()
         for (i in 0 until total) {
@@ -112,7 +114,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun guardarNotasEnPrefs() {
-        val prefs = getSharedPreferences("notas_prefs", MODE_PRIVATE)
+        val correo = getSharedPreferences("sesion", MODE_PRIVATE)
+            .getString("correo", "default") ?: "default"
+        val prefs = getSharedPreferences("notas_${correo}", MODE_PRIVATE)
         val editor = prefs.edit()
         editor.putInt("total_notas", listaNotas.size)
         listaNotas.forEachIndexed { i, nota ->

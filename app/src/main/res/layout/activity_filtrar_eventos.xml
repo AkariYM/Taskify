@@ -1,147 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="24dp"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="top">
+    android:background="#F5F5F5">
 
-    <!-- TÍTULO PRINCIPAL - Centrado horizontalmente -->
-    <TextView
-        android:text="Filtrar eventos"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="32dp"/>
-
-    <!-- SUBTÍTULO: Categorías -->
-    <TextView
-        android:text="Categorías"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="#424242"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"/>
-
-    <!-- Filtro Personal - Switch gris cuando está OFF, azul cuando está ON -->
+    <!-- Encabezado -->
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/headerFiltrar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
+        android:background="@drawable/splash_background"
+        android:orientation="vertical"
         android:gravity="center_vertical"
-        android:paddingVertical="12dp"
-        android:background="?attr/selectableItemBackground"
-        android:layout_marginBottom="8dp">
+        android:paddingStart="20dp">
+
         <TextView
-            android:text="Personal"
-            android:textSize="16sp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"/>
-        <Switch
-            android:id="@+id/switchPersonal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <!-- Filtro Académico - Switch gris cuando está OFF, azul cuando está ON -->
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:paddingVertical="12dp"
-        android:background="?attr/selectableItemBackground"
-        android:layout_marginBottom="8dp">
-        <TextView
-            android:text="Académico"
-            android:textSize="16sp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"/>
-        <Switch
-            android:id="@+id/switchAcademico"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <!-- Filtro Trabajo - Switch gris cuando está OFF, azul cuando está ON -->
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:paddingVertical="12dp"
-        android:background="?attr/selectableItemBackground"
-        android:layout_marginBottom="16dp">
-        <TextView
-            android:text="Trabajo"
-            android:textSize="16sp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"/>
-        <Switch
-            android:id="@+id/switchTrabajo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <!-- Contenedor de botones: Aplicar filtros y Todos -->
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="24dp">
-
-        <!-- Botón para aplicar los filtros seleccionados -->
-        <Button
-            android:id="@+id/btnAplicar"
-            android:text="Aplicar filtros"
-            android:backgroundTint="#1976D2"
-            android:textColor="#FFFFFF"
-            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingVertical="14dp"
-            android:layout_marginEnd="8dp"/>
-
-        <!-- Botón para mostrar TODOS los eventos -->
-        <Button
-            android:id="@+id/btnTodos"
-            android:text="Mostrar todos"
-            android:backgroundTint="#1976D2"
-            android:textColor="#FFFFFF"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingVertical="14dp"
-            android:layout_marginStart="8dp"/>
+            android:text="Filtrar Eventos"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"/>
 
     </LinearLayout>
 
-    <!-- SUBTÍTULO: Resultados -->
-    <TextView
-        android:text="Eventos filtrados"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="#424242"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"/>
-
-    <!-- Lista de eventos filtrados con botones de editar/eliminar -->
-    <ListView
-        android:id="@+id/listFiltrada"
+    <!-- Contenido -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:divider="#E0E0E0"
-        android:dividerHeight="1dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="100dp"
+        android:padding="16dp">
 
-</LinearLayout>
+        <!-- Filtros -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Categorías"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#3700B3"
+                    android:layout_marginBottom="12dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Personal"
+                        android:textSize="15sp"
+                        android:textColor="#333333"/>
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchPersonal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Académico"
+                        android:textSize="15sp"
+                        android:textColor="#333333"/>
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchAcademico"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Trabajo"
+                        android:textSize="15sp"
+                        android:textColor="#333333"/>
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchTrabajo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnAplicar"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="Aplicar"
+                        android:textColor="#FFFFFF"
+                        android:backgroundTint="#6200EE"
+                        android:layout_marginEnd="8dp"/>
+
+                    <Button
+                        android:id="@+id/btnTodos"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="Mostrar todos"
+                        android:textColor="#6200EE"
+                        android:backgroundTint="#F0E6FF"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Resultados -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📋 Eventos filtrados"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#3700B3"
+            android:layout_marginBottom="8dp"/>
+
+        <ListView
+            android:id="@+id/listFiltrada"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:divider="#E0E0E0"
+            android:dividerHeight="1dp"/>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

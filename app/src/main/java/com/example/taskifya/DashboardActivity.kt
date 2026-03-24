@@ -79,7 +79,9 @@ class DashboardActivity : AppCompatActivity() {
     private fun cargarNotasRecientes() {
         val contenedor = findViewById<LinearLayout>(R.id.layoutNotasRecientes)
         contenedor.removeAllViews()
-        val prefs = getSharedPreferences("notas_prefs", MODE_PRIVATE)
+        val correo = getSharedPreferences("sesion", MODE_PRIVATE)
+            .getString("correo", "default") ?: "default"
+        val prefs = getSharedPreferences("notas_${correo}", MODE_PRIVATE)
         val totalNotas = prefs.getInt("total_notas", 0)
         if (totalNotas == 0) {
             val tv = TextView(this)

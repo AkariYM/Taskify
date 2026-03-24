@@ -24,7 +24,7 @@ class CrearRecordatorioActivity : AppCompatActivity() {
         val etDescripcion = findViewById<EditText>(R.id.etDescripcion)
         val btnFecha = findViewById<Button>(R.id.btnFecha)
         val btnHora = findViewById<Button>(R.id.btnHora)
-        val switchRep = findViewById<Switch>(R.id.switchRepetir)
+        val switchRep = findViewById<androidx.appcompat.widget.SwitchCompat>(R.id.switchRepetir)
         val btnGuardar = findViewById<Button>(R.id.btnGuardar)
         val btnCancelar = findViewById<Button>(R.id.btnCancelar)
 

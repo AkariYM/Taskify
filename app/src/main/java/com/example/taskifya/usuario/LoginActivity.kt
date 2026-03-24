@@ -4,10 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.taskifya.DashboardActivity
 import com.example.taskifya.R
 import com.example.taskifya.database.DatabaseHelper
-import com.example.taskifya.DashboardActivity
-
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,15 +18,12 @@ class LoginActivity : AppCompatActivity() {
         val btnIniciar = findViewById<Button>(R.id.btnIniciar)
         val tvRegistrate = findViewById<TextView>(R.id.tvRegistrate)
         val tvCambiarPass = findViewById<TextView>(R.id.tvCambiarContrasena)
-
         val db = DatabaseHelper(this)
 
-        // Ir a Registro
         tvRegistrate.setOnClickListener {
             startActivity(Intent(this, RegistroActivity::class.java))
         }
 
-        // Ir a cambiar contraseña
         tvCambiarPass.setOnClickListener {
             val correo = etEmail.text.toString().trim()
             val intent = Intent(this, CambiarPasswordActivity::class.java)
@@ -49,7 +45,6 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // VALIDACIÓN REAL
             val usuario = db.obtenerUsuario(email)
 
             if (usuario == null) {
@@ -62,20 +57,20 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // LOGIN EXITOSO
-            Toast.makeText(this, "Bienvenido ${usuario.nombre}", Toast.LENGTH_LONG).show()
+            // Verificar si es diferente usuario al anterior
+            val sesionPrevia = getSharedPreferences("sesion", MODE_PRIVATE)
+                .getString("correo", null)
 
+            // Guardar nueva sesión con prefijo por usuario
             val prefs = getSharedPreferences("sesion", MODE_PRIVATE)
             prefs.edit().putString("correo", usuario.correo).apply()
+
+            Toast.makeText(this, "Bienvenido ${usuario.nombre}", Toast.LENGTH_LONG).show()
 
             val intent = Intent(this, DashboardActivity::class.java)
             intent.putExtra("correo", usuario.correo)
             startActivity(intent)
             finish()
-
         }
     }
 }
-
-
-
