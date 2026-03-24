@@ -11,8 +11,13 @@ import com.example.taskifya.database.DatabaseHelper
 import com.example.taskifya.eventos.CalendarioMenuActivity
 import com.example.taskifya.eventos.EventosRepository
 import com.example.taskifya.personalizacion.PersonalizacionActivity
+import com.example.taskifya.recursos.HabitDatabase
 import com.example.taskifya.usuario.LoginActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -34,11 +39,6 @@ class DashboardActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.tvSaludo).text =
             "Hola, ${usuario?.nombre ?: "Usuario"} 👋"
 
-        cargarNotasRecientes()
-        cargarEventosHoy()
-        cargarProximosEventos()
-
-        // Cerrar sesión
         findViewById<CardView>(R.id.cardCerrarSesion).setOnClickListener {
             cerrarSesion()
         }
@@ -69,6 +69,13 @@ class DashboardActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        cargarNotasRecientes()
+        cargarProximosEventos()
+        cargarTareasPendientes()
+    }
+
     private fun cargarNotasRecientes() {
         val contenedor = findViewById<LinearLayout>(R.id.layoutNotasRecientes)
         contenedor.removeAllViews()
@@ -93,30 +100,6 @@ class DashboardActivity : AppCompatActivity() {
         }
     }
 
-    private fun cargarEventosHoy() {
-        val contenedor = findViewById<LinearLayout>(R.id.layoutEventosHoy)
-        contenedor.removeAllViews()
-        val hoy = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
-        val repo = EventosRepository(this)
-        val eventosHoy = repo.porFecha(hoy)
-        if (eventosHoy.isEmpty()) {
-            val tv = TextView(this)
-            tv.text = "No tienes eventos para hoy"
-            tv.textSize = 14f
-            tv.setTextColor(0xFF666666.toInt())
-            contenedor.addView(tv)
-        } else {
-            eventosHoy.take(3).forEach { evento ->
-                val tv = TextView(this)
-                tv.text = "• ${evento.titulo} — ${evento.hora}"
-                tv.textSize = 15f
-                tv.setTextColor(0xFF333333.toInt())
-                tv.setPadding(0, 0, 0, 16)
-                contenedor.addView(tv)
-            }
-        }
-    }
-
     private fun cargarProximosEventos() {
         val contenedor = findViewById<LinearLayout>(R.id.layoutProximosEventos)
         contenedor.removeAllViews()
@@ -133,11 +116,40 @@ class DashboardActivity : AppCompatActivity() {
         } else {
             proximos.forEach { evento ->
                 val tv = TextView(this)
-                tv.text = "• ${evento.titulo} — ${evento.fechaIso}"
+                tv.text = "• ${evento.titulo} — ${evento.fechaIso} ${evento.hora}"
                 tv.textSize = 15f
                 tv.setTextColor(0xFF333333.toInt())
                 tv.setPadding(0, 0, 0, 16)
                 contenedor.addView(tv)
+            }
+        }
+    }
+
+    private fun cargarTareasPendientes() {
+        val tvTareas = findViewById<TextView>(R.id.tvTareasPendientes)
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val habitDb = HabitDatabase.getDatabase(applicationContext)
+                val calendar = Calendar.getInstance()
+                calendar.set(Calendar.HOUR_OF_DAY, 0)
+                calendar.set(Calendar.MINUTE, 0)
+                calendar.set(Calendar.SECOND, 0)
+                calendar.set(Calendar.MILLISECOND, 0)
+                val hoy = calendar.timeInMillis
+                val todasTareas = habitDb.habitDao().getAllHabitsSync()
+                val registrosHoy = habitDb.habitRecordDao().getRecordsForDateSync(hoy)
+                val completadas = registrosHoy.count { it.isCompleted }
+                val pendientes = todasTareas.size - completadas
+                withContext(Dispatchers.Main) {
+                    tvTareas.text = if (pendientes > 0)
+                        "$pendientes tarea(s) pendiente(s)"
+                    else
+                        "¡Todo al día! ✅"
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    tvTareas.text = "Sin tareas registradas"
+                }
             }
         }
     }

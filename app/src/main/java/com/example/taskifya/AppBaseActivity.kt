@@ -1,10 +1,10 @@
-package com.example.taskifya.personalizacion
+package com.example.taskifya
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.taskifya.R
 
-open class BaseActivity : AppCompatActivity() {
+open class AppBaseActivity : AppCompatActivity() {
 
     override fun getTheme(): android.content.res.Resources.Theme {
         val theme = super.getTheme()

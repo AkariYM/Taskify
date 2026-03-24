@@ -22,6 +22,10 @@ interface HabitDao {
     @Query("SELECT * FROM habits WHERE is_active = 1 ORDER BY created_date DESC")
     fun getAllActiveHabits(): Flow<List<Habit>>
 
+    // ← Agregar esta función sync
+    @Query("SELECT * FROM habits WHERE is_active = 1")
+    suspend fun getAllHabitsSync(): List<Habit>
+
     @Query("SELECT * FROM habits WHERE id = :habitId")
     suspend fun getHabitById(habitId: Int): Habit?
 
@@ -39,6 +43,10 @@ interface HabitRecordDao {
 
     @Query("SELECT * FROM habit_records WHERE date = :date")
     fun getRecordsForDate(date: Long): Flow<List<HabitRecord>>
+
+    // ← Agregar esta función sync
+    @Query("SELECT * FROM habit_records WHERE date = :date")
+    suspend fun getRecordsForDateSync(date: Long): List<HabitRecord>
 
     @Query("SELECT * FROM habit_records WHERE habit_id = :habitId AND date = :date LIMIT 1")
     suspend fun getRecordForHabitAndDate(habitId: Int, date: Long): HabitRecord?

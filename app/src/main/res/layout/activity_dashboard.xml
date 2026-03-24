@@ -101,11 +101,11 @@
                         android:padding="16dp"/>
                 </androidx.cardview.widget.CardView>
 
-                <!-- Hoy en el calendario -->
+                <!-- Tareas pendientes -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="🗓️ Hoy en el calendario"
+                    android:text="✅ Tareas pendientes"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="#3700B3"
@@ -118,11 +118,18 @@
                     app:cardCornerRadius="12dp"
                     app:cardElevation="4dp">
                     <LinearLayout
-                        android:id="@+id/layoutEventosHoy"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="16dp"/>
+                        android:padding="16dp">
+                        <TextView
+                            android:id="@+id/tvTareasPendientes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cargando..."
+                            android:textSize="15sp"
+                            android:textColor="#333333"/>
+                    </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <!-- Cerrar sesión -->

@@ -19,7 +19,7 @@
     <item
         android:id="@+id/nav_recursos"
         android:icon="@android:drawable/ic_menu_agenda"
-        android:title="Recursos"/>
+        android:title="Tareas"/>
 
     <item
         android:id="@+id/nav_mas"
