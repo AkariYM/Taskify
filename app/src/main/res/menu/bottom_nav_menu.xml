@@ -17,9 +17,9 @@
         android:title="Calendario"/>
 
     <item
-        android:id="@+id/nav_eventos"
+        android:id="@+id/nav_recursos"
         android:icon="@android:drawable/ic_menu_agenda"
-        android:title="Eventos"/>
+        android:title="Recursos"/>
 
     <item
         android:id="@+id/nav_mas"

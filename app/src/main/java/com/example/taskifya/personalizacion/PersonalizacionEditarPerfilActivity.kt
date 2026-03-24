@@ -1,39 +1,25 @@
 package com.example.taskifya.personalizacion
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import com.example.taskifya.R
+import com.example.taskifya.usuario.EditarPerfilActivity
 
 class PersonalizacionEditarPerfilActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personalizacion_editar_perfil)
 
+        // Obtener correo de sesión
+        val correo = getSharedPreferences("sesion", MODE_PRIVATE)
+            .getString("correo", "") ?: ""
 
-
-        val btnEditarPerfil = findViewById<Button>(R.id.buttonEditarPerfil)
-
-        btnEditarPerfil.setOnClickListener {
-            // Aquí después harás la navegación a la pantalla final de EDITAR PERFIL
-            // val intent = Intent(this, EditarPerfilActivity::class.java)
-            // intent.putExtra("correo", correoUsuario)
-            // startActivity(intent)
-        }
-    }
-
-
-    private fun aplicarTema() {
-        val prefs = getSharedPreferences("temas", MODE_PRIVATE)
-        val rosaActivo = prefs.getBoolean("temaRosa", false)
-
-        if (rosaActivo) {
-            setTheme(R.style.Theme_TaskifyA_Rose)
-        } else {
-            setTheme(R.style.Theme_TaskifyA)
+        findViewById<CardView>(R.id.buttonEditarPerfil).setOnClickListener {
+            val intent = Intent(this, EditarPerfilActivity::class.java)
+            intent.putExtra("correo", correo)
+            startActivity(intent)
         }
     }
 }

@@ -21,29 +21,21 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
-        // Recibir correo
         val correo = intent.getStringExtra("correo")
             ?: getSharedPreferences("sesion", MODE_PRIVATE).getString("correo", "") ?: ""
 
-        // Guardar sesión
         getSharedPreferences("sesion", MODE_PRIVATE)
             .edit().putString("correo", correo).apply()
 
-        // Obtener usuario
         val db = DatabaseHelper(this)
         val usuario = db.obtenerUsuario(correo)
 
-        // Saludo
         findViewById<TextView>(R.id.tvSaludo).text =
-            "Hola, ${usuario?.nombre ?: "Usuario"} "
+            "Hola, ${usuario?.nombre ?: "Usuario"} 👋"
 
-        // Cargar notas recientes
         cargarNotasRecientes()
-
-        // Cargar eventos de hoy
         cargarEventosHoy()
 
-        // Bottom Navigation
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNav.selectedItemId = R.id.nav_inicio
         bottomNav.setOnItemSelectedListener { item ->
@@ -57,8 +49,8 @@ class DashboardActivity : AppCompatActivity() {
                     startActivity(Intent(this, CalendarioMenuActivity::class.java))
                     true
                 }
-                R.id.nav_eventos -> {
-                    startActivity(Intent(this, CalendarioMenuActivity::class.java))
+                R.id.nav_recursos -> {
+                    startActivity(Intent(this, RecursosActivity::class.java))
                     true
                 }
                 R.id.nav_mas -> {
@@ -73,12 +65,8 @@ class DashboardActivity : AppCompatActivity() {
     private fun cargarNotasRecientes() {
         val contenedor = findViewById<LinearLayout>(R.id.layoutNotasRecientes)
         contenedor.removeAllViews()
-
-        // Obtener las últimas 3 notas de SharedPreferences
-        // Por ahora mostramos mensaje si no hay notas
         val prefs = getSharedPreferences("notas_prefs", MODE_PRIVATE)
         val totalNotas = prefs.getInt("total_notas", 0)
-
         if (totalNotas == 0) {
             val tv = TextView(this)
             tv.text = "No tienes notas recientes"
@@ -101,11 +89,9 @@ class DashboardActivity : AppCompatActivity() {
     private fun cargarEventosHoy() {
         val contenedor = findViewById<LinearLayout>(R.id.layoutEventosHoy)
         contenedor.removeAllViews()
-
         val hoy = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
         val repo = EventosRepository(this)
         val eventosHoy = repo.porFecha(hoy)
-
         if (eventosHoy.isEmpty()) {
             val tv = TextView(this)
             tv.text = "No tienes eventos para hoy"
@@ -122,21 +108,16 @@ class DashboardActivity : AppCompatActivity() {
                 contenedor.addView(tv)
             }
         }
-
-        // También cargar próximos eventos
         cargarProximosEventos()
     }
 
     private fun cargarProximosEventos() {
         val contenedor = findViewById<LinearLayout>(R.id.layoutProximosEventos)
         contenedor.removeAllViews()
-
         val repo = EventosRepository(this)
         val todos = repo.todos()
         val hoy = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
-
         val proximos = todos.filter { it.fechaIso >= hoy }.take(3)
-
         if (proximos.isEmpty()) {
             val tv = TextView(this)
             tv.text = "No tienes próximos eventos"
