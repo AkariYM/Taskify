@@ -98,6 +98,10 @@
             android:exported="false"
             android:theme="@style/Theme.TaskifyA" />
 
+        <activity
+            android:name=".DashboardActivity"
+            android:exported="false"/>
+
     </application>
 
 </manifest>

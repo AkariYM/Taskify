@@ -6,6 +6,8 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.taskifya.R
 import com.example.taskifya.database.DatabaseHelper
+import com.example.taskifya.DashboardActivity
+
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,10 +65,14 @@ class LoginActivity : AppCompatActivity() {
             // LOGIN EXITOSO
             Toast.makeText(this, "Bienvenido ${usuario.nombre}", Toast.LENGTH_LONG).show()
 
-            val intent = Intent(this, EditarPerfilActivity::class.java)
+            val prefs = getSharedPreferences("sesion", MODE_PRIVATE)
+            prefs.edit().putString("correo", usuario.correo).apply()
+
+            val intent = Intent(this, DashboardActivity::class.java)
             intent.putExtra("correo", usuario.correo)
             startActivity(intent)
             finish()
+
         }
     }
 }
