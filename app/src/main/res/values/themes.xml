@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Tema principal — Blanco/Morado -->
     <style name="Theme.TaskifyA" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">#6200EE</item>
         <item name="colorPrimaryVariant">#3700B3</item>
@@ -13,37 +12,10 @@
         <item name="colorSurface">#FFFFFF</item>
         <item name="colorOnSurface">#000000</item>
         <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:textColorSecondary">#666666</item>
     </style>
 
-    <!-- Tema Rosa -->
-    <style name="Theme.TaskifyA_Rose" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">#E91E8C</item>
-        <item name="colorPrimaryVariant">#C2185B</item>
-        <item name="colorSecondary">#FF80AB</item>
-        <item name="colorBackground">#FFF1F6</item>
-        <item name="android:colorBackground">#FFF1F6</item>
-        <item name="android:windowBackground">#FFF1F6</item>
-        <item name="colorOnBackground">#3D0022</item>
-        <item name="colorSurface">#FFE4F0</item>
-        <item name="colorOnSurface">#3D0022</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
-    </style>
-
-    <!-- Tema Oscuro -->
-    <style name="Theme.TaskifyA_Dark" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">#BB86FC</item>
-        <item name="colorPrimaryVariant">#3700B3</item>
-        <item name="colorSecondary">#03DAC5</item>
-        <item name="colorBackground">#121212</item>
-        <item name="android:colorBackground">#121212</item>
-        <item name="android:windowBackground">#121212</item>
-        <item name="colorOnBackground">#FFFFFF</item>
-        <item name="colorSurface">#1E1E1E</item>
-        <item name="colorOnSurface">#FFFFFF</item>
-        <item name="colorOnPrimary">#000000</item>
-    </style>
-
-    <!-- Base -->
     <style name="Base.Theme.TaskifyA" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorBackground">#FFFFFF</item>
         <item name="android:colorBackground">#FFFFFF</item>

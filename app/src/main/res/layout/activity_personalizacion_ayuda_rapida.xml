@@ -151,7 +151,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cambia el tema de colores, configura notificaciones y edita tu perfil."
+                        android:text="Configura notificaciones y edita tu perfil."
                         android:textSize="15sp"
                         android:textColor="#555555"/>
                 </LinearLayout>

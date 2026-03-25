@@ -37,7 +37,7 @@ class DashboardActivity : AppCompatActivity() {
         val usuario = db.obtenerUsuario(correo)
 
         findViewById<TextView>(R.id.tvSaludo).text =
-            "Hola, ${usuario?.nombre ?: "Usuario"} !"
+            "Hola, ${usuario?.nombre ?: "Usuario"}!"
 
         findViewById<CardView>(R.id.cardCerrarSesion).setOnClickListener {
             cerrarSesion()
@@ -105,7 +105,8 @@ class DashboardActivity : AppCompatActivity() {
     private fun cargarProximosEventos() {
         val contenedor = findViewById<LinearLayout>(R.id.layoutProximosEventos)
         contenedor.removeAllViews()
-        val correo = getSharedPreferences("sesion", MODE_PRIVATE).getString("correo", "default") ?: "default"
+        val correo = getSharedPreferences("sesion", MODE_PRIVATE)
+            .getString("correo", "default") ?: "default"
         val repo = EventosRepository(this, correo)
         val todos = repo.todos()
         val hoy = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
@@ -132,7 +133,8 @@ class DashboardActivity : AppCompatActivity() {
         val tvTareas = findViewById<TextView>(R.id.tvTareasPendientes)
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val correo = getSharedPreferences("sesion", MODE_PRIVATE).getString("correo", "default") ?: "default"
+                val correo = getSharedPreferences("sesion", MODE_PRIVATE)
+                    .getString("correo", "default") ?: "default"
                 val habitDb = HabitDatabase.getDatabase(applicationContext, correo)
                 val calendar = Calendar.getInstance()
                 calendar.set(Calendar.HOUR_OF_DAY, 0)

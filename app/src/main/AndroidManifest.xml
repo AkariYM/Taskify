@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskifyA">
 
-        <!-- Receiver de personalización -->
         <receiver
             android:name=".personalizacion.RecordatorioReceiver"
             android:exported="false" />
@@ -44,9 +43,6 @@
             android:exported="false" />
         <activity
             android:name=".personalizacion.PersonalizacionActivity"
-            android:exported="false" />
-        <activity
-            android:name=".personalizacion.PersonalizacionTemaActivity"
             android:exported="false" />
         <activity
             android:name=".personalizacion.PersonalizacionNotificacionesActivity"
@@ -81,7 +77,7 @@
             android:name=".RecursosActivity"
             android:exported="false" />
 
-        <!-- SplashActivity — nueva pantalla de inicio -->
+        <!-- SplashActivity -->
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -92,7 +88,6 @@
             </intent-filter>
         </activity>
 
-        <!-- MainActivity — ya no es launcher -->
         <activity
             android:name=".MainActivity"
             android:exported="false"

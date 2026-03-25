@@ -7,8 +7,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.taskifya.R
@@ -29,12 +27,8 @@ class PersonalizacionCopiaDeSeguridadActivity : BaseActivity() {
     private lateinit var backupButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_personalizacion_copia_de_seguridad)
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -51,20 +45,6 @@ class PersonalizacionCopiaDeSeguridadActivity : BaseActivity() {
             startBackup()
         }
     }
-
-
-
-    private fun aplicarTema() {
-        val prefs = getSharedPreferences("temas", MODE_PRIVATE)
-        val rosaActivo = prefs.getBoolean("temaRosa", false)
-
-        if (rosaActivo) {
-            setTheme(R.style.Theme_TaskifyA_Rose)
-        } else {
-            setTheme(R.style.Theme_TaskifyA)
-        }
-    }
-
 
     @SuppressLint("SetTextI18n")
     private fun startBackup() {
@@ -110,9 +90,8 @@ class PersonalizacionCopiaDeSeguridadActivity : BaseActivity() {
                 }
                 delay(200)
             }
-            "Copia de seguridad completada: ${backupDir.absolutePath}"
+            "Copia completada: ${backupDir.absolutePath}"
         } catch (e: Exception) {
-            e.printStackTrace()
             "Error: ${e.message}"
         }
     }
